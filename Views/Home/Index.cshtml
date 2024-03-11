@@ -1,0 +1,689 @@
+﻿@{
+	ViewData["Title"] = "首頁";
+	Layout = "_Layout";
+}
+
+@section Styles
+{
+	<!-- 依需要引用不同樣式表 -->
+	<link rel="stylesheet" href="@Url.Content("~/vendor/rewear/css/style.css")" />
+}
+<style>
+	.slider-thumb>img {
+		position: relative;
+		z-index: 999;
+	}
+
+	.slider-off {
+		width: 200px;
+		height: 200px;
+		background: #7fbd43;
+		border-radius: 50%;
+		position: absolute;
+		right: -45px;
+		z-index: 0;
+		top: -10px;
+	}
+
+	.circle-inner {
+		width: 200px;
+		height: 200px;
+		position: absolute;
+		top: 40px;
+		right: 30px;
+		z-index: 999;
+	}
+</style>
+<!--==================================================-->
+<!-- Start Banner輪播區域 -->
+<!--==================================================-->
+<div class="slider owl-carousel">
+	<section class="slider-section">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-6">
+					<div class="slider-content">
+						<div class="organic-section-sub-title">
+							<h6>新鮮生活盒盒驚喜</h6>
+						</div>
+						<div class="slider-title">
+							<h1>發現優質之選 &amp; 時尚新品</h1>
+						</div>
+						<div class="slider-desc">
+							<p>透過我們精心挑選的高品質、時尚商品，開啟一場風格和優雅的旅程。我們為您帶來愉悅的購物體驗，呈現精心挑選的商品，為您的生活注入新鮮感。
+							</p>
+						</div>
+						<div class="slider-btn">
+							<ul>
+								<li><a href="about.html">探索更多</a></li>
+								<li><a href="shop.html">立即購物</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="slider-thumb">
+						<img src="@Url.Content("~/vendor/moban/static/picture/slider-thumb.png")" alt="thumb">
+						<div class="slider-off">
+							<div class="circle-inner">
+								<h5 class="counter">45 </h5>
+								<span>%</span>
+								<h6> OFF</h6>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="slider-shape1">
+				<img src="@Url.Content("~/vendor/moban/static/picture/slider-shape.png")" alt="shape">
+			</div>
+			<div class="slider-shape2">
+				<img src="@Url.Content("~/vendor/moban/static/picture/slider-shape-2.png")" alt="shape">
+			</div>
+		</div>
+	</section>
+	<section class="slider-section style-2">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-6">
+					<div class="slider-content">
+						<div class="organic-section-sub-title style-2">
+							<h6>簡約時尚 · 健康美味<i class="bi bi-arrow-through-heart-fill"></i></h6>
+						</div>
+						<div class="slider-title">
+							<h1>精選品味，
+								追求健康生活</h1>
+						</div>
+						<div class="slider-desc">
+							<p>在這個快節奏的生活中，我們精心挑選的服飾和新鮮食品，為您提供簡單又美味的選擇。不論是追求時尚穿搭還是享受高品質飲食，我們致力於滿足您對健康和方便的需求，讓您享受優質的生活。
+							</p>
+						</div>
+						<div class="slider-btn style-2">
+							<a href="shop.html">立即購買</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="slider-thumb">
+						<img src="@Url.Content("~/vendor/moban/static/picture/slider2-thumb.png")" alt="thumb">
+					</div>
+				</div>
+			</div>
+			<div class="slider-shape">
+				<img width="150px" src="@Url.Content("~/vendor/moban/static/picture/slider2-shape.png")" alt="shape">
+			</div>
+		</div>
+	</section>
+</div>
+<!--==================================================-->
+<!-- End Banner輪播區域 -->
+<!--==================================================-->
+
+
+<!--==================================================-->
+<!-- Start 特色區域 -->
+<!--==================================================-->
+<section class="feature-section">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-4 col-md-6">
+				<div class="feature-single-box style-1 wow fadeInLeft animated">
+					<div class="feature-box-content">
+						<div class="feature-box-sub-title">
+							<h6>潮流精選</h6>
+						</div>
+						<div class="feature-box-title">
+							<h1>發現時尚又方便的選擇</h1>
+						</div>
+						<div class="feature-box-btn">
+							<a href="shop-details.html">立即探索</a>
+						</div>
+					</div>
+					<div class="feature-box-thumb">
+						<img src="@Url.Content("~/vendor/moban/static/picture/feature-thumb.png")" alt="thumb">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="feature-single-box style-2 wow fadeInDown animated">
+					<div class="feature-box-content">
+						<div class="feature-box-sub-title">
+							<h6>每日新鮮</h6>
+						</div>
+						<div class="feature-box-title">
+							<h1>品味生活享受
+								精選食材體驗</h1>
+						</div>
+						<div class="feature-box-btn">
+							<a href="shop-details.html">購買</a>
+						</div>
+					</div>
+					<div class="feature-box-thumb">
+						<img src="@Url.Content("~/vendor/moban/static/picture/feature-thumb-2.png")" alt="thumb">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 wow fadeInRight animated">
+				<div class="feature-single-box style-3">
+					<div class="feature-box-content">
+						<div class="feature-box-sub-title">
+							<h6>100% 精華</h6>
+						</div>
+						<div class="feature-box-title">
+							<h1>穿搭時尚
+								品味美食</h1>
+						</div>
+						<div class="feature-box-btn">
+							<a href="shop-details.html">購買</a>
+						</div>
+					</div>
+					<div class="feature-box-thumb">
+						<img src="@Url.Content("~/vendor/moban/static/picture/feature-thumb-3.png")" alt="thumb">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--==================================================-->
+<!-- End  特色區域 -->
+<!--==================================================-->
+
+
+<!--==================================================-->
+<!-- Start 關於我們區域 -->
+<!--==================================================-->
+<section class="about-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="about-thumb wow fadeInUp animated">
+					<img src="@Url.Content("~/vendor/moban/static/picture/about-thumb.png")" alt="thumb">
+					<div class="about-thumb-btn">
+						<a class="venobox vbox-item" data-vbtype="youtube" data-autoplay="true"
+							href="https://www.youtube.com/watch?v=Bn4BqothAHQ&list=PLLGiWDoNLMxAaJa192cB_4UeeQGiK9502&index=1"
+							data-gall="video-repeat"><i class="fas fa-play"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="about-content">
+					<div class="organic-section-sub-title wow fadeInLeft animated">
+						<h6>關於我們</h6>
+					</div>
+					<div class="organic-section-title wow fadeInLeft animated">
+						<h1>簡單、時尚、新鮮</h1>
+					</div>
+					<div class="about-desc wow fadeInRight animated">
+						<p>在這個快節奏的生活中，我們致力於提供一站式的時尚新鮮體驗，為您打造網購即是您的備用冰箱和衣櫥，滿足您對美味和時尚的渴望。</p>
+					</div>
+					<div class="about-items wow fadeInUp animated">
+						<div class="about-item">
+							<div class="about-item-icon">
+								<img src="@Url.Content("~/vendor/moban/static/picture/about-icon.png")" alt="icon">
+							</div>
+							<div class="about-item-title">
+								<h4>品質保證</h4>
+							</div>
+						</div>
+						<div class="about-item">
+							<div class="about-item-icon">
+								<img src="@Url.Content("~/vendor/moban/static/picture/about-icon-2.png")" alt="icon">
+							</div>
+							<div class="about-item-title">
+								<h4>時尚生活</h4>
+							</div>
+						</div>
+					</div>
+					<div class="about-btn">
+						<a href="about.html">了解更多</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--==================================================-->
+<!-- End  關於我們區域 -->
+<!--==================================================-->
+
+
+<!--==================================================-->
+<!-- Start 商品分類區域 -->
+<!--==================================================-->
+<section class="category-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center wow fadeInDown animated">
+				<div class="organic-section-sub-title">
+					<h6>我們的精選</h6>
+				</div>
+				<div class="organic-section-title">
+					<h1>我們提供的精品</h1>
+				</div>
+			</div>
+		</div>
+		<div class="category-box">
+			<div class="row">
+				<div class="col-lg-4 col-md-6">
+					<div class="category-single-box style-1 wow fadeInLeft animated">
+						<div class="category-box-icon">
+							<img src="@Url.Content("~/vendor/moban/static/picture/category-icon.png")" alt="icon">
+						</div>
+						<div class="category-box-title">
+							<h5>時尚服飾</h5>
+						</div>
+						<div class="category-box-desc">
+							<p>我們一直秉持著輕鬆有趣的概念，致力於打造可持續的時尚服務。讓您感受輕盈愉悅的氛圍，同時追求更可持續的美好。</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="category-single-box style-2 wow fadeInDown animated">
+						<div class="category-box-icon">
+							<img src="@Url.Content("~/vendor/moban/static/picture/category-icon-2.png")" alt="icon">
+						</div>
+						<div class="category-box-title">
+							<h5>時尚衣櫃</h5>
+						</div>
+						<div class="category-box-desc">
+							<p>探索我們的時尚系列，無縫結合風格和可持續性，為更美好的世界大膽宣示。</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="category-single-box style-3 wow fadeInRight animated">
+						<div class="category-box-icon">
+							<img src="@Url.Content("~/vendor/moban/static/picture/category-icon-3.png")" alt="icon">
+						</div>
+						<div class="category-box-title">
+							<h5>新鮮尋寶</h5>
+						</div>
+						<div class="category-box-desc">
+							<p>發現新奇有趣的產品，不僅符合您的生活方式，還有助於可持續而充滿活力的生活體驗。</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--==================================================-->
+<!-- End  商品分類區域 -->
+<!--==================================================-->
+
+
+<!--==================================================-->
+<!-- Start 商品特色區域 -->
+<!--==================================================-->
+<section class="feature-section style-two">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="feature-content">
+					<div class="organic-section-sub-title wow fadeInLeft animated">
+						<h6>每一步都是驚喜</h6>
+					</div>
+					<div class="organic-section-title wow fadeInLeft animated">
+						<h1>新時代女性的時尚新鮮生活</h1>
+					</div>
+					<div class="feature-desc wow fadeInUp animated ">
+						<p>以簡約時尚風格，為您帶來新鮮生活的每個驚喜。步步驚喜，輕鬆時尚。</p>
+					</div>
+					<div class="feature-item wow fadeInLeft animated">
+						<div class="feature-icon">
+							<img src="@Url.Content("~/vendor/moban/static/picture/feature-icon1.png")" alt="icon">
+						</div>
+						<div class="feature-item-content">
+							<div class="feature-item-title">
+								<h5>免運費</h5>
+							</div>
+							<div class="feature-item-desc">
+								<p>滿 $399 或以上訂單即可享免運費，讓您的購物更輕鬆。</p>
+							</div>
+						</div>
+					</div>
+					<div class="feature-item wow fadeInRight animated">
+						<div class="feature-icon">
+							<img src="@Url.Content("~/vendor/moban/static/picture/featurel-icon-2.png")" alt="icon">
+						</div>
+						<div class="feature-item-content">
+							<div class="feature-item-title">
+								<h5>時尚美味</h5>
+							</div>
+							<div class="feature-item-desc">
+								<p>時尚美味的食品和服飾，保證給您最佳的品質體驗。</p>
+							</div>
+						</div>
+					</div>
+					<div class="feature-item wow fadeInLeft animated">
+						<div class="feature-icon">
+							<img src="@Url.Content("~/vendor/moban/static/picture/featurel-icon-3.png")" alt="icon">
+						</div>
+						<div class="feature-item-content">
+							<div class="feature-item-title">
+								<h5>安全付款</h5>
+							</div>
+							<div class="feature-item-desc">
+								<p>放心購物，以安全的方式支付您的每筆訂單。</p>
+							</div>
+						</div>
+					</div>
+					<div class="feature-item wow fadeInRight animated">
+						<div class="feature-item-icon">
+							<img src="@Url.Content("~/vendor/moban/static/picture/featurel-icon-4.png")" alt="icon">
+						</div>
+						<div class="feature-item-content">
+							<div class="feature-item-title">
+								<h5>友善支援</h5>
+							</div>
+							<div class="feature-item-desc">
+								<p>我們的團隊隨時為您提供友善專業的協助。</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="feature-thumb wow fadeInUp animated">
+					<img src="@Url.Content("~/vendor/moban/static/picture/feature-thumb.jpg")" alt="thumb">
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--==================================================-->
+<!-- End  商品特色區域 -->
+<!--==================================================-->
+
+
+<!--==================================================-->
+<!-- Start 新品區域 -->
+<!--==================================================-->
+<section class="new-food-section">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-lg-6">
+				<div class="new-food-thumb wow fadeInUp animated">
+					<img src="@Url.Content("~/vendor/moban/static/picture/new-food-thumb.png")" alt="thumb">
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="new-food-content">
+					<div class="organic-section-sub-title wow fadeInLeft animated">
+						<h6>全新生活</h6>
+					</div>
+					<div class="organic-section-title wow fadeInLeft animated">
+						<h1>發現最新的新鮮美食 - 低至65%折扣！</h1>
+					</div>
+					<div class="new-food-desc wow fadeInRight animated">
+						<p>沉浸於最新的新鮮美食中，享受高達65%的誘人優惠。沐浴在一場全方位的體驗中，改變您的日常時刻。</p>
+					</div>
+					<div id="clockdiv">
+						<div>
+							<span class="days"></span>
+							<div class="smalltext">天</div>
+						</div>
+						<div>
+							<span class="hours"></span>
+							<div class="smalltext">小時</div>
+						</div>
+						<div>
+							<span class="minutes"></span>
+							<div class="smalltext">分鐘</div>
+						</div>
+						<div>
+							<span class="seconds"></span>
+							<div class="smalltext">秒</div>
+						</div>
+					</div>
+					<div class="new-food-btn wow fadeInUp animated">
+						<a href="#">立即探索</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--==================================================-->
+<!-- End  新品區域 -->
+<!--==================================================-->
+
+
+<!--==================================================-->
+<!-- Start 新品區域 -->
+<!--==================================================-->
+<section class="relation-section">
+	<div class="container">
+		<div class="row text-center wow fadeInDown animated">
+			<div class="col-lg-12">
+				<div class="organic-section-sub-title">
+					<h6>用戶分享</h6>
+				</div>
+				<div class="organic-section-title">
+					<h1>對我們的評論</h1>
+				</div>
+			</div>
+		</div>
+		<div class="new-food-box">
+			<div class="row">
+				<div class="news-food-slider owl-carousel">
+					<div class="col-lg-12 ">
+						<div class="relation-single-box">
+							<div class="relation-box-icon">
+								<img src="@Url.Content("~/vendor/moban/static/picture/new-food-box-icon.png")"
+									alt="icon">
+							</div>
+							<div class="relation-box-rate">
+								<ul>
+									<li><i class="fi fi-ss-star"></i></li>
+									<li><i class="fi fi-ss-star"></i></li>
+									<li><i class="fi fi-ss-star"></i></li>
+									<li><i class="fi fi-ss-star"></i></li>
+									<li><i class="fi fi-ss-star"></i></li>
+								</ul>
+							</div>
+							<div class="relation-box-desc">
+								<p>“透過輕鬆有趣的方式，完全改變了我們的相處模式，真的是太令人驚喜了！”</p>
+							</div>
+							<div class="relation-box-profile">
+								<div class="relation-profile-icon">
+									<img src="@Url.Content("~/vendor/moban/static/picture/new-food-profile-icon.png")"
+										alt="profile">
+								</div>
+								<div class="relation-profile-content">
+									<div class="relation-profile-title">
+										<h5>Bessie Copper</h5>
+									</div>
+									<div class="relation-profile-designation">
+										<h6>公司創辦人</h6>
+									</div>
+								</div>
+							</div>
+							<div class="relation-single-box-shape">
+								<img src="@Url.Content("~/vendor/moban/static/picture/new-food-box-shape.png")"
+									alt="shape">
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 ">
+						<div class="relation-single-box">
+							<div class="relation-box-icon">
+								<img src="@Url.Content("~/vendor/moban/static/picture/new-food-box-icon.png")"
+									alt="icon">
+							</div>
+							<div class="relation-box-rate">
+								<ul>
+									<li><i class="fi fi-ss-star"></i></li>
+									<li><i class="fi fi-ss-star"></i></li>
+									<li><i class="fi fi-ss-star"></i></li>
+									<li><i class="fi fi-ss-star"></i></li>
+									<li><i class="fi fi-ss-star"></i></li>
+								</ul>
+							</div>
+							<div class="relation-box-desc">
+								<p>“這個網站真是太讚了！他們的服飾款式獨特時尚，食品更是新鮮可口。我每次購物都感覺像是開啟了一場小驚喜之旅。而且，客服態度超好，讓我感受到購物的愉悅。推薦給所有追求品味生活的小資女性！”
+								</p>
+							</div>
+							<div class="relation-box-profile">
+								<div class="relation-profile-icon">
+									<img src="@Url.Content("~/vendor/moban/static/picture/new-food-profile-icon-2.png")"
+										alt="profile">
+								</div>
+								<div class="relation-profile-content">
+									<div class="relation-profile-title">
+										<h5>Malaika Singh</h5>
+									</div>
+									<div class="relation-profile-designation">
+										<h6>公司經理</h6>
+									</div>
+								</div>
+							</div>
+							<div class="relation-single-box-shape">
+								<img src="@Url.Content("~/vendor/moban/static/picture/new-food-box-shape.png")"
+									alt="shape">
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 ">
+						<div class="relation-single-box">
+							<div class="relation-box-icon">
+								<img src="@Url.Content("~/vendor/moban/static/picture/new-food-box-icon.png")"
+									alt="icon">
+							</div>
+							<div class="relation-box-rate">
+								<ul>
+									<li><i class="fi fi-ss-star"></i></li>
+									<li><i class="fi fi-ss-star"></i></li>
+									<li><i class="fi fi-ss-star"></i></li>
+									<li><i class="fi fi-ss-star"></i></li>
+									<li><i class="fi fi-ss-star"></i></li>
+								</ul>
+							</div>
+							<div class="relation-box-desc">
+								<p>“這個商品真的太棒了！完美結合了時尚感和實用性，讓我的生活更有品味。購物過程方便快捷，給我帶來了很大的驚喜。”</p>
+							</div>
+							<div class="relation-box-profile">
+								<div class="relation-profile-icon">
+									<img src="@Url.Content("~/vendor/moban/static/picture/new-food-profile-icon-3.png")"
+										alt="profile">
+								</div>
+								<div class="relation-profile-content">
+									<div class="relation-profile-title">
+										<h5>Alesha Brown</h5>
+									</div>
+									<div class="relation-profile-designation">
+										<h6>時尚達人</h6>
+									</div>
+								</div>
+							</div>
+							<div class="relation-single-box-shape">
+								<img src="@Url.Content("~/vendor/moban/static/picture/new-food-box-shape.png")"
+									alt="shape">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--==================================================-->
+<!-- End  新品區域 -->
+<!--==================================================-->
+
+
+<!--==================================================-->
+<!-- Start 最新消息區域 -->
+<!--==================================================-->
+<section class="latest-news-section">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-lg-6">
+				<div class="latest-news-top-left wow fadeInLeft animated">
+					<div class="organic-section-sub-title">
+						<h6>最新優惠</h6>
+					</div>
+					<div class="organic-section-title">
+						<h1>最新部落格文章
+							& 更新消息</h1>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="latest-news-top-right wow fadeInRight animated">
+					<div class="latest-news-desc">
+						<p>追求時尚、方便、新鮮的生活，讓您的生活充滿驚喜。</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="latest-news-box">
+			<div class="row">
+				<div class="col-lg-4 col-md-6">
+					<div class="latest-news-single-box wow fadeInLeft animated">
+						<div class="latest-box-thumb">
+							<img src="@Url.Content("~/vendor/moban/static/picture/latest-news-box-thumb.jpg")"
+								alt="thumb">
+						</div>
+						<div class="latest-box-date">
+							<h6><i class="far fa-calendar"></i> May 30,2023</h6>
+						</div>
+						<div class="latest-box-message">
+							<h6><i class="far fa-comment"></i> 08</h6>
+						</div>
+						<div class="latest-box-title">
+							<a href="blog.html">時尚男士：簡約風格與潮流元素的完美結合</a>
+						</div>
+						<div class="latest-box-btn">
+							<a href="blog-details.html">閱讀更多<i class="bi bi-arrow-right"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="latest-news-single-box wow fadeInDown animated">
+						<div class="latest-box-thumb">
+							<img src="@Url.Content("~/vendor/moban/static/picture/latest-news-box-thumb-2.jpg")"
+								alt="thumb">
+						</div>
+						<div class="latest-box-date">
+							<h6><i class="far fa-calendar"></i> May 25,2023</h6>
+						</div>
+						<div class="latest-box-message">
+							<h6><i class="far fa-comment"></i> 06</h6>
+						</div>
+						<div class="latest-box-title">
+							<a href="blog.html">五月花季：時尚女生的浪漫穿搭指南</a>
+						</div>
+						<div class="latest-box-btn">
+							<a href="blog-details.html">閱讀更多<i class="bi bi-arrow-right"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="latest-news-single-box wow fadeInRight animated">
+						<div class="latest-box-thumb">
+							<img src="@Url.Content("~/vendor/moban/static/picture/latest-news-box-thumb-3.jpg")"
+								alt="thumb">
+						</div>
+						<div class="latest-box-date">
+							<h6><i class="far fa-calendar"></i> May 20,2023</h6>
+						</div>
+						<div class="latest-box-message">
+							<h6><i class="far fa-comment"></i> 07</h6>
+						</div>
+						<div class="latest-box-title">
+							<a href="blog.html">夏日清新Look：輕盈裙裝搭配時尚配件</a>
+						</div>
+						<div class="latest-box-btn">
+							<a href="blog-details.html">閱讀更多<i class="bi bi-arrow-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--==================================================-->
+<!-- End  最新消息區域 -->
+<!--==================================================-->

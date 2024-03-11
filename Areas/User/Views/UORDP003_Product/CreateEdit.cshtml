@@ -1,0 +1,203 @@
+@model FreshBox.Models.Products
+@{
+    ViewData["Title"] = "CreateEdit";
+    Layout = "_LayoutAdmin";
+
+    var CategoryNoList = new List<SelectListItem>();
+    var StatusNoList = new List<SelectListItem>();
+    using var repoCategoryNo = new z_repoCategorys();
+    using var repoStatusNo = new z_repoProductStatus();
+    CategoryNoList = repoCategoryNo.GetDropDownList(true);
+    StatusNoList = repoStatusNo.GetDropDownList(true);
+}
+
+@using (Html.BeginForm())
+{
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @Html.HiddenFor(model => model.Id)
+    <div class="row my-4">
+        <div class="col-md-6">
+            <div class="row form-group align-items-center">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.ProdNo)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.ProdNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProdNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row form-group align-items-center">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.ProdName)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.ProdName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProdName, "", new { @class = "text-danger"})
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-4">
+        <div class="col-md-6">
+            <div class="row form-group align-items-center">
+                <div class="control-label col-md-3 col-xxl-2">@Html.DisplayNameFor(model => model.IsShowPhoto)
+                </div>
+                <div class="col-md-3">@Html.CheckBoxFor(model => model.IsShowPhoto, new { htmlAttributes = new { @class = "form-control" , @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.IsShowPhoto, "", new { @class = "text-danger" })
+                </div>
+                <div class="control-label col-md-2">@Html.DisplayNameFor(model => model.IsEnabled)
+                </div>
+                <div class="col-md-3">@Html.CheckBoxFor(model => model.IsEnabled, new { htmlAttributes = new { @class = "form-control" , @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.IsEnabled, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row form-group align-items-center">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.StatusNo)
+                </div>
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.StatusNo, StatusNoList, new
+                        {
+                            @class = "form-control selectpicker",
+                            data_live_search = "true"
+                        })
+                    @Html.ValidationMessageFor(model => model.StatusNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-4">
+        <div class="col-md-6">
+            <div class="row form-group align-items-center">
+                <div class="control-label col-md-3 col-xxl-2">@Html.DisplayNameFor(model => model.VendorNo)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.VendorNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.VendorNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row form-group align-items-center">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.CategoryNo)
+                </div>
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.CategoryNo, CategoryNoList, new
+                        {
+                            @class = "form-control selectpicker",
+                            data_live_search = "true"
+                        })
+                    @Html.ValidationMessageFor(model => model.StatusNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-4">
+        <div class="col-md-6">
+            <div class="row form-group align-items-center">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.CostPrice)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.CostPrice, new { htmlAttributes = new { @class = "form-control" , @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.CostPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row form-group align-items-center">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.MarketPrice)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.MarketPrice, new { htmlAttributes = new { @class = "form-control" , @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.MarketPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-4">
+        <div class="col-md-6">
+            <div class="row form-group align-items-center">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.SalePrice)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.SalePrice, new { htmlAttributes = new { @class = "form-control" , @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.SalePrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row form-group align-items-center">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.DiscountPrice)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.DiscountPrice, new { htmlAttributes = new { @class = "form-control" , @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.DiscountPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-4">
+        <div class="col-md-6">
+            <div class="row form-group align-items-center">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.InventoryQty)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.InventoryQty, new { htmlAttributes = new { @class = "form-control" , @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.InventoryQty, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row form-group align-items-center">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.SpecificationText)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.SpecificationText, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SpecificationText, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-4">
+        <div class="col-md-6">
+            <div class="row form-group align-items-center">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.ContentText)
+                </div>
+                <div class="col-md-8">
+                    @Html.TextAreaFor(model => model.ContentText, new { @class = "form-control", rows = "5" })
+                    @Html.ValidationMessageFor(model => model.ContentText, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row form-group align-items-center">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.Remark)
+                </div>
+                <div class="col-md-8">
+                    @Html.TextAreaFor(model => model.Remark, new { @class = "form-control", rows = "5" })
+                    @Html.ValidationMessageFor(model => model.Remark, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row form-group">
+        <div class="col-md-12">
+            @Html.InputButton(enFormInputButton.Submit)
+            @Html.ActionReturnButton()
+        </div>
+    </div>
+}

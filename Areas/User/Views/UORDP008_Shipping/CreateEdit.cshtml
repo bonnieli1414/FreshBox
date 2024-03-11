@@ -1,0 +1,48 @@
+@model FreshBox.Models.Shippings
+
+@{
+    ViewData["Title"] = "CreateEdit";
+    Layout = "_LayoutAdmin";
+}
+
+@using (Html.BeginForm())
+{
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="row form-group">
+        <div class="control-label col-md-2">
+            @Html.DisplayNameFor(m => m.ShippingNo)
+        </div>
+        <div class="col-md-10 my-2">
+            @Html.EditorFor(model => model.ShippingNo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ShippingNo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="control-label col-md-2">
+            @Html.DisplayNameFor(m => m.ShippingName)
+        </div>
+        <div class="col-md-10 my-2">
+            @Html.EditorFor(model => model.ShippingName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ShippingName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="control-label col-md-2">
+            @Html.DisplayNameFor(m => m.Remark)
+        </div>
+        <div class="col-md-10 my-2">
+            @Html.EditorFor(model => model.Remark, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Remark, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <hr>
+    <div class="row form-group">
+        <div class="col-md-12">
+            <input type="submit" value="異動存檔" class="btn btn-primary" />
+            @Html.ActionLink("返回列表", "Index", ActionService.Controller,
+                     new { area = ActionService.Area }, new { @class = "btn btn-success" })
+        </div>
+    </div>
+}

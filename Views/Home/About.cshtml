@@ -1,0 +1,253 @@
+@{
+    ViewData["Title"] = "關於我們";
+    Layout = "_Layout";
+}
+
+<!--==================================================-->
+<!-- Start  Banner 區域 -->
+<!--==================================================-->
+<section class="banner-inner-section">
+    <div class="dark-overlay">
+        <div class="container" style="transform:translateY(100%);">
+            <div class="row">
+                <div class="col-lg-12 wow fadeInUp animated">
+                    <div class="banner-inner-title">
+                        <h1>@ViewData["Title"]</h1>
+                    </div>
+                    <div class="banner-inner-link">
+                        <ul>
+                            <li><a href="@Url.Action("Index" , "Home" , new {area = ""})">首頁</a></li>
+                            <li><i class="bi bi-arrow-right"></i></li>
+                            <li><a href="@Url.Action("About" , "Home" , new {area = ""})">關於我們</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--==================================================-->
+<!-- End Banner 區域 -->
+<!--==================================================-->
+
+
+<!--==================================================-->
+<!-- Start  About 區域 -->
+<!--==================================================-->
+<section class="about-section style-two">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="about-thumb wow fadeInUp animated">
+                    <img src="@Url.Content("~/vendor/moban/static/picture/about-thumb.png")" alt="
+                       thumb">
+                    <div class="about-thumb-btn">
+                        <a class="venobox vbox-item" data-vbtype="youtube" data-autoplay="true"
+                            href="https://www.youtube.com/watch?v=uQbr7V4Mqn8" data-gall="video-repeat"><i
+                                class="fas fa-play"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-content">
+                    <div class="organic-section-sub-title wow fadeInLeft animated">
+                        <h6>@ViewData["Title"]</h6>
+                    </div>
+                    <div class="organic-section-title wow fadeInLeft animated">
+                        <h1>品味美味與時尚服飾</h1>
+                    </div>
+                    <div class="about-desc wow fadeInRight animated">
+                        <p>探索我們的精選健康食品和時尚服飾，融合美味和風格，為追求品味生活的新時代女性提供最佳選擇。</p>
+                    </div>
+                    <div class="about-items wow fadeInUp animated">
+                        <div class="about-item">
+                            <div class="about-item-icon">
+                                <img src="@Url.Content("~/vendor/moban/static/picture/about-icon-food.png")" alt="icon">
+                            </div>
+                            <div class="about-item-title">
+                                <h4>時尚服飾</h4>
+                            </div>
+                        </div>
+                        <div class="about-item">
+                            <div class="about-item-icon">
+                                <img src="@Url.Content("~/vendor/moban/static/picture/about-icon-fashion.png")"
+                                    alt="icon">
+                            </div>
+                            <div class="about-item-title">
+                                <h4>精選美食</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-btn">
+                        <a href="#">了解更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--==================================================-->
+<!-- End About 區域 -->
+<!--==================================================-->
+
+
+
+
+
+
+<!--==================================================-->
+<!-- Start  Faq 區域 -->
+<!--==================================================-->
+<section class="about-inner-service">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="about-inner-service-box wow fadeInLeft animated">
+                    <div class="about-service-box-thumb">
+                        <img src="@Url.Content("~/vendor/moban/static/picture/about-inner-box-thumb.jpg" )" alt="thumb">
+                    </div>
+                    <div class="about-service-box-content">
+                        <div class="about-service-box-icon">
+                            <a href="service-detials.html"><i class="bi bi-arrow-right"></i></a>
+                        </div>
+                        <div class="about-service-box-sub-title">
+                            <h6>FreshBox</h6>
+                        </div>
+                        <div class="about-service-box-title">
+                            <h6>Fresh Product</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="about-inner-service-box wow fadeInDown animated">
+                    <div class="about-service-box-thumb">
+                        <img src="@Url.Content("~/vendor/moban/static/picture/abbout-inner-box-thumb.jpg" )"
+                            alt="thumb">
+                    </div>
+                    <div class="about-service-box-content">
+                        <div class="about-service-box-icon">
+                            <a href="service-detials.html"><i class="bi bi-arrow-right"></i></a>
+                        </div>
+                        <div class="about-service-box-sub-title">
+                            <h6>FreshBox</h6>
+                        </div>
+                        <div class="about-service-box-title">
+                            <h6>Fresh Product</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="about-inner-service-box wow fadeInUp animated">
+                    <div class="about-service-box-thumb">
+                        <img src="@Url.Content("~/vendor/moban/static/picture/abbout-inner-box-thumb-3.jpg" )"
+                            alt="thumb">
+                    </div>
+                    <div class="about-service-box-content">
+                        <div class="about-service-box-icon">
+                            <a href="service-detials.html"><i class="bi bi-arrow-right"></i></a>
+                        </div>
+                        <div class="about-service-box-sub-title">
+                            <h6>FreshBox</h6>
+                        </div>
+                        <div class="about-service-box-title">
+                            <h6>Fresh Product</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="about-inner-service-box wow fadeInRight animated">
+                    <div class="about-service-box-thumb">
+                        <img src="@Url.Content("~/vendor/moban/static/picture/abbout-inner-box-thumb-4.jpg" )"
+                            alt="thumb">
+                    </div>
+                    <div class="about-service-box-content">
+                        <div class="about-service-box-icon">
+                            <a href="service-detials.html"><i class="bi bi-arrow-right"></i></a>
+                        </div>
+                        <div class="about-service-box-sub-title">
+                            <h6>FreshBox</h6>
+                        </div>
+                        <div class="about-service-box-title">
+                            <h6>Fresh Product</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--==================================================-->
+<!-- End Faq 區域 -->
+<!--==================================================-->
+
+
+
+
+
+<!--==================================================-->
+<!-- End Faq 區域 -->
+<!--==================================================-->
+<section class="about-inner-counter">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="about-counter-box wow fadeInLeft animated">
+                    <div class="about-counter-icon">
+                        <img src="@Url.Content("~/vendor/moban/static/picture/about-counter-icon.png")" alt="icon">
+                    </div>
+                    <div class="about-counter-number">
+                        <h1 class="counter">9559</h1>
+                    </div>
+                    <div class="about-counter-title">
+                        <h6>能量剩餘</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="about-counter-box wow fadeInDown animated">
+                    <div class="about-counter-icon">
+                        <img src="@Url.Content("~/vendor/moban/static/picture/about-counter-icon-2.png")" alt="icon">
+                    </div>
+                    <div class="about-counter-number">
+                        <h1 class="counter">8153</h1>
+                    </div>
+                    <div class="about-counter-title">
+                        <h6>生活軌跡</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="about-counter-box wow fadeInUp animated">
+                    <div class="about-counter-icon">
+                        <img src="@Url.Content("~/vendor/moban/static/picture/about-counter-icon-3.png")" alt="icon">
+                    </div>
+                    <div class="about-counter-number">
+                        <h1 class="counter">1149</h1>
+                    </div>
+                    <div class="about-counter-title">
+                        <h6>美好計畫</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="about-counter-box wow fadeInRight animated">
+                    <div class="about-counter-icon">
+                        <img src="@Url.Content("~/vendor/moban/static/picture/about-counter-icon-4.png")" alt="icon">
+                    </div>
+                    <div class="about-counter-number">
+                        <h1 class="counter">2277</h1>
+                    </div>
+                    <div class="about-counter-title">
+                        <h6>休息充電</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--==================================================-->
+<!-- End Faq 區域 -->
+<!--==================================================-->

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Google表單串聯</title>
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css'
+		integrity='sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg=='
+		crossorigin='anonymous' />
+	<style>
+		form * {
+			display: block;
+			width: 80%;
+			resize: none;
+			margin: 20px auto;
+			border: none;
+			border-radius: 8px;
+		}
+
+		#submit {
+			width: auto;
+			background-color: green;
+			color: #fff;
+		}
+	</style>
+	<script>
+		function send() {
+			let nameElement = document.getElementById("nameInput");
+			let name = nameElement.value
+			let telElement = document.getElementById("telInput");
+			let tel = telElement.value
+			let msgElement = document.getElementById("msgInput");
+			let msg = msgElement.value
+			if (name == "" || tel == "" || msg == "") {
+				alert("請輸入內容喔!");
+			} else {
+				location.href = "https://docs.google.com/forms/d/e/1FAIpQLSdhSXPTnRWLWYqIHprGdGAHj0u5LQYPNYAuHoFtUl_qGDzzPg/formResponse?entry.25335529=" + name + "&entry.1142036074=" + tel + "&entry.1717622713=" + msg
+			}
+		}
+
+		function backMsg() {
+			alert("感謝您的留言，我們會有專人儘快與您確認!");
+		}
+	</script>
+</head>
+
+
+<body style="background-color: #333;">
+	<div class="container w-75 text-white py-3">
+		<h1 class="h2 text-center py-5">夥伴計劃：合作夥伴計劃</h1>
+		<h4 class="h6 text-center pb-2">歡迎參加我們的合作夥伴計劃！成為我們的夥伴，一起攜手合作，共同發展。</h4>
+
+		<h3 class="h4 py-3">我們的價值觀</h3>
+		<p>我們重視與夥伴之間的合作，並致力於共同成長和成功。我們希望透過夥伴計劃，為客戶提供更多價值和服務，同時幫助夥伴實現業務目標。</p>
+
+		<h3 class="h4 py-3">夥伴計劃特點</h3>
+		<ul>
+			<li>
+				<h4 class="h5">多樣化的合作形式：</h4>
+				<p>我們提供多種合作形式，包括代理商、分銷商、合作夥伴等，以滿足不同夥伴的需求。</p>
+			</li>
+			<li>
+				<h4 class="h5">優惠條款：</h4>
+				<p>我們提供具有競爭力的優惠條款和報酬計劃，讓夥伴享受可觀的收益。</p>
+			</li>
+			<li>
+				<h4 class="h5">專業培訓和支持：</h4>
+				<p>我們提供專業的培訓和支持，幫助夥伴了解產品或服務，提高銷售能力。</p>
+			</li>
+			<li>
+				<h4 class="h5">市場推廣資源：</h4>
+				<p>我們提供市場推廣資源，包括營銷素材、行銷活動支持等，幫助夥伴擴大業務。</p>
+			</li>
+		</ul>
+
+		<h3 class="h4 py-3">加入我們的夥伴計劃</h3>
+		<p>如果您對我們的夥伴計劃感興趣，請填寫申請表格或聯繫我們的夥伴團隊。我們期待與您合作，共同開創美好的未來！</p>
+
+		<iframe src="" frameborder="0" name="hiddenArea" style="display: none;"
+			onload="this.onload=function(){window.location='joinUs.html';backMsg();}"></iframe>
+
+		<form class="my-5" action="post" target="hiddenArea">
+			<input class="py-1" type="text" placeholder="請輸入真實姓名" required id="nameInput">
+			<input class="py-1" type="tel" placeholder="請輸入行動電話號碼10位數字" required maxlength="10" id="telInput">
+			<textarea name="" placeholder="請輸入留言 最多200個字" maxlength="200" id="msgInput"></textarea>
+			<input class="py-1 my-3" class="btn btn-success d-block" type="submit" value="填好送出" id="submit"
+				onclick="send()">
+		</form>
+	</div>
+
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+		integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+		crossorigin='anonymous'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js'
+		integrity='sha512-WW8/jxkELe2CAiE4LvQfwm1rajOS8PHasCCx+knHG0gBHt8EXxS6T6tJRTGuDQVnluuAvMxWF4j8SNFDKceLFg=='
+		crossorigin='anonymous'></script>
+</body>
+
+</html>

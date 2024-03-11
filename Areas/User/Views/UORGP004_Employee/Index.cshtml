@@ -1,0 +1,85 @@
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@model IEnumerable<FreshBox.Models.Employees>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_LayoutAdmin";
+}
+
+<table class="table table-bordered" style="width: 100%;">
+    <thead class="table-secondary">
+        <tr>
+            <th>
+                @Html.ActionLinkButton(enFormLinkButton.CreateEdit, 0)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.EmpNo)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.EmpName)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.GenderName)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.DeptName)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.TitleName)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.Birthday)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.ContactEmail)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.ContactTel)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.Remark)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            ActionService.RowId = item.Id;
+            ActionService.RowData = (item.EmpName == null) ? "" : item.EmpNo + " " + item.EmpName;
+            <tr>
+                <td>
+                    @Html.ActionLinkButton(enFormLinkButton.CreateEdit, item.Id)
+                    @Html.InputButton(enFormInputButton.DeleteAlert)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmpNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmpName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GenderName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeptName)
+                </td>
+                <td class="table-wrap">
+                    @Html.DisplayFor(modelItem => item.TitleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Birthday)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactTel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remark)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

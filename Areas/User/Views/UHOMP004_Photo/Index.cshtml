@@ -1,0 +1,61 @@
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@model IEnumerable<FreshBox.Models.Photos>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_LayoutAdmin";
+}
+<table class="table table-bordered" style="width: 100%;">
+    <thead class="table-secondary">
+        <tr>
+            <th>
+                @Html.ActionLinkButton(enFormLinkButton.CreateEdit, 0)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.PhotoNo)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.CodeNo)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.FolderName)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.ProdName)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.Remark)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            ActionService.RowId = item.Id;
+            ActionService.RowData = (item.CodeNo == null) ? "" : item.PhotoNo + " " + item.CodeNo;
+            <tr>
+                <td>
+                    @Html.ActionLinkButton(enFormLinkButton.CreateEdit, item.Id)
+                    @Html.InputButton(enFormInputButton.DeleteAlert)
+                    @await Html.PartialAsync("_PartialFormUpload")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhotoNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodeNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FolderName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProdName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remark)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,128 @@
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@model IEnumerable<FreshBox.Models.Products>
+@{
+    ViewData["Title"] = "Index";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    using var cate = new z_repoCategorys();
+
+    var cateTopList = cate.GetTopCategoryList();
+
+    string str_sort_name = "預設排序";
+
+    if (SessionService.SortNo == "D") str_sort_name = "預設排序";
+
+    if (SessionService.SortNo == "H") str_sort_name = "價格由高至低";
+
+    if (SessionService.SortNo == "L") str_sort_name = "價格由低至高";
+}
+
+@section Styles {
+        <link rel="stylesheet" href="@Url.Content("~/vendor/rewear/css/product.css")" />
+}
+
+<div class="container d-flex justify-content-center">
+<div class="content row d-flex justify-content-start">
+    <!-- 左方攔位 -->
+    <aside class="left col-md-4 col-lg-3 d-flex justify-content-center">
+        <div>
+            <div class="box1">
+                <a href="@Url.Action("Index" , "Category" , new {area = "" , id = "All"})" class="link-title visit">全站商品</a>
+            </div>
+                @{
+                    using var cate1 = new z_repoCategorys();
+
+                    foreach (var item in cateTopList)
+
+                    {
+
+                        var cateDetailList = cate1.GetDetailCategoryList(item.CategoryNo);
+
+                            <div class="box1">
+                                <!-- <p>WOMEN</p> -->
+                                <a href="@Url.Action("Index" , "Category" , new {area = "" , id = item.CategoryNo})" class="link-title">@item.CategoryName</a>
+                            @foreach (var item1 in cateDetailList)
+
+                            {
+                                        <a href="@Url.Action("Index" , "Category" , new {area = "" , id = item1.CategoryNo})">@item1.CategoryName</a>
+                            }
+                            </div>
+                    }
+                }
+
+        </div>
+    </aside>
+    <!-- 右方欄位 -->
+    <section class="rr row col-lg-9 d-flex justify-content-center mt-4">
+        <!-- 右上 -->
+        <div class="row right-t">
+            <div class="t1 position-relative">
+                <img src="@Url.Content("~/vendor/rewear/images/product/p3.jpg")" alt="" />
+                <div class="row position-absolute" style="top: 40%;right: 40%;">
+                    <div class="col-lg-12 wow fadeInUp animated">
+                        <div class="banner-inner-link">
+                            <ul>
+                                <li><a href="@Url.Action("Index" , "Home" , new {area = ""})">首頁</a></li>
+                                <li><i class="bi bi-arrow-right"></i></li>
+                                <li><a href="@Url.Action("Index" , "Category" , new {area = "" , id = ViewData["idData"] })">@ViewData["idName"]</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-6">
+                <span class="pagename">@ViewData["idName"]</span>
+            </div>
+            <div class="filter col-lg-3 col-md-6">
+                <div class="dropdown">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            @str_sort_name
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" href="@Url.Action("Sort", "Category" , new {area = "" , id = "D"})">預設排序</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Sort", "Category" , new {area = "" , id = "H"})">價格由高至低</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Sort", "Category" , new {area = "" , id = "L"})">價格由低至高</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- 右中商品列 -->
+        <div class="right-m">
+            <div class="r-m1">
+                <div class="row d-flex justify-content-center p-3">
+                        @foreach (var item in Model)
+
+                        {
+                            <div class="product col-xl-3 col-lg-4">
+                                <div class="product-img">
+                                <a href="@Url.Action("Detail" , "Product" , new {area = "" , id = item.ProdNo})">
+                                    <img class="a" src="@Url.Content(item.ProdImage)?v=@DateTime.UtcNow.Ticks" alt="" />
+                                </a>
+                                </div>
+                                <div class="product-name">
+                                <a href="@Url.Action("Detail" , "Product" , new {area = "" , id = item.ProdNo})">@item.ProdName</a>
+                                <span>NT$&#032;@item.MinPrice</span>
+                                <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                                </div>
+                            </div>
+                        }
+                </div>
+            </div>
+            <!-- 右下頁數 -->
+            <div class="d-flex justify-content-center align-items-center my-5">
+                <div class="px-3">
+                        @Html.PagedListPager((IPagedList)Model, x => Url.Action("Index", "Category", new { area = "", page = x }))
+                </div>
+                <div>@ViewData["PageInfo"]</div>
+            </div>
+        </div>
+    </section>
+</div>
+</div>
+
+@section BodyScript {
+        <script src="@Url.Content("~/vendor/rewear/js/main.js")" asp-append-version="true"></script>
+}

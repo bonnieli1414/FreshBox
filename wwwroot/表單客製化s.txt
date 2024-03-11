@@ -1,0 +1,18 @@
+表單ID:1FAIpQLSdhSXPTnRWLWYqIHprGdGAHj0u5LQYPNYAuHoFtUl_qGDzzPg
+
+姓名寫入的對應欄位代號:25335529
+
+連絡電話寫入的對應欄位代號:1142036074
+
+留言事項寫入的對應欄位代號:1717622713
+
+
+表單規則
+https://docs.google.com/forms/d/e/表單ID/formResponse?entry.id1=答案1&entry.id2=答案2
+
+https://docs.google.com/forms/d/e/1FAIpQLSdhSXPTnRWLWYqIHprGdGAHj0u5LQYPNYAuHoFtUl_qGDzzPg/formResponse?entry.25335529=測試31&entry.1142036074=測試3&entry.1717622713=測試3
+
+
+**欄位代號 請找第二層中括號裡面的10碼數字編號**
+
+https://docs.google.com/forms/d/e/1FAIpQLSdhSXPTnRWLWYqIHprGdGAHj0u5LQYPNYAuHoFtUl_qGDzzPg/viewform?usp=sf_link

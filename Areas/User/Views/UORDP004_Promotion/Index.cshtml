@@ -1,0 +1,67 @@
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@model IEnumerable<FreshBox.Models.Promotions>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_LayoutAdmin";
+}
+
+<table class="table table-bordered" style="width: 150%;">
+    <thead class="table-secondary">
+        <tr>
+            <th>
+                @Html.ActionLinkButton(enFormLinkButton.CreateEdit, 0)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.ProdName)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.SortNo)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.EndTime)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.SalePrice)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.Remark)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            ActionService.RowId = item.Id;
+            ActionService.RowData = (item.ProdName == null) ? "" : item.ProdNo + " " + item.ProdName;
+            <tr>
+                <td>
+                    @Html.ActionLinkButton(enFormLinkButton.CreateEdit, item.Id)
+                    @Html.InputButton(enFormInputButton.DeleteAlert)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProdName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SortNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalePrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remark)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

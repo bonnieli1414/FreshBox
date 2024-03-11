@@ -1,0 +1,112 @@
+@model FreshBox.Models.Users
+
+@{
+    ViewData["Title"] = ActionService.ViewActionName;
+    Layout = "_LayoutLite";
+    List<SelectListItem> GenderList = new List<SelectListItem>();
+    List<SelectListItem> DepartmentList = new List<SelectListItem>();
+    List<SelectListItem> TitleList = new List<SelectListItem>();
+    using var codeDatas = new z_repoCodeDatas();
+    using var dept = new z_repoDepartments();
+    using var title = new z_repoTitles();
+    GenderList = codeDatas.GetDropDownList("Gender" , false);
+    DepartmentList = dept.GetDropDownList(true);
+    TitleList = title.GetDropDownList(true);
+}
+
+<div class="card card-size-small mt-5">
+    <div class="card header bg-secondary text-white">
+        <div class="pt-2 px-2">
+            <div class="float-start">
+                <h4>@ActionService.ViewActionName</h4>
+            </div>
+            <div class="float-end">
+                <h4>@ActionService.ViewPrgInfo</h4>
+            </div>
+        </div>
+    </div>
+    <div class="card body p-2">
+        <form asp-action="EditProfile">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(m => m.IsValid)
+            @Html.HiddenFor(m => m.UserNo)
+            @Html.HiddenFor(m => m.UserName)
+            @Html.HiddenFor(m => m.CodeNo)
+            @Html.HiddenFor(m => m.RoleNo)
+            @Html.HiddenFor(m => m.Password)
+            @Html.HiddenFor(m => m.Birthday)
+            @Html.HiddenFor(m => m.OnboardDate)
+            @Html.HiddenFor(m => m.LeaveDate)
+
+            <div class="row form-group">
+                <label asp-for="UserNo" class="control-label col-md-3"></label>
+                <div class="col-md-9">
+                    <span class="control-label">@Model.UserNo</span>
+                </div>
+            </div>
+            <div class="row form-group">
+                <label asp-for="UserName" class="control-label col-md-3"></label>
+                <div class="col-md-9">
+                    <span class="control-label">@Model.UserName</span>
+                </div>
+            </div>
+            <div class="row form-group">
+                <label asp-for="GenderName" class="control-label col-md-3"></label>
+                <div class="col-md-9">
+                    <select asp-for="GenderCode" asp-items="@GenderList" class="form-control"></select>
+                    <span asp-validation-for="GenderCode" class="text-danger"></span>
+                </div>
+            </div>
+            @if (SessionService.RoleNo != "Member")
+            {
+                <div class="row form-group">
+                    <label asp-for="DeptName" class="control-label col-md-3"></label>
+                    <div class="col-md-9">
+                        <select asp-for="DeptNo" asp-items="@DepartmentList" class="form-control"></select>
+                        <span asp-validation-for="DeptNo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label asp-for="TitleName" class="control-label col-md-3"></label>
+                    <div class="col-md-9">
+                        <select asp-for="TitleNo" asp-items="@TitleList" class="form-control"></select>
+                        <span asp-validation-for="TitleNo" class="text-danger"></span>
+                    </div>
+                </div>
+            }
+            <div class="row form-group">
+                <label asp-for="ContactEmail" class="control-label col-md-3"></label>
+                <div class="col-md-9">
+                    <input asp-for="ContactEmail" class="form-control" />
+                    <span asp-validation-for="ContactEmail" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row form-group">
+                <label asp-for="ContactTel" class="control-label col-md-3"></label>
+                <div class="col-md-9">
+                    <input asp-for="ContactTel" class="form-control" />
+                    <span asp-validation-for="ContactTel" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row form-group">
+                <label asp-for="ContactAddress" class="control-label col-md-3"></label>
+                <div class="col-md-9">
+                    <input asp-for="ContactAddress" class="form-control" />
+                    <span asp-validation-for="ContactAddress" class="text-danger"></span>
+                </div>
+            </div>
+            <hr>
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <div class="float-start">
+                        <input type="submit" value="更新記錄" class="btn btn-primary" /> 
+                    </div>
+                    <div class="float-end">
+                        @Html.ActionLink("返回我的帳號", "Profile", "Web" , new { area = "" } , new {@class = "btn btn-success"}) 
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

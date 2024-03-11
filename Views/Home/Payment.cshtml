@@ -1,0 +1,113 @@
+@model vmOrders
+
+@{
+    ViewData["Title"] = "Payment";
+    Layout = "_Layout";
+    List<SelectListItem> PaymentList = new List<SelectListItem>();
+    List<SelectListItem> ShippingList = new List<SelectListItem>();
+    using var pay = new z_repoPayments();
+    using var ship = new z_repoShippings();
+    PaymentList = pay.GetDropDownList(false);
+    ShippingList = ship.GetDropDownList(false);
+    using var user = new z_repoUsers();
+    var userData = user.GetData(SessionService.UserNo);
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@Url.Content("~/vendor/rewear/css/cart-payment.css")" />
+}
+<main class="py-5" style="background-color: #fafafa;">
+    @using (Html.BeginForm())
+    {
+        <div class='container py-5'>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class='row'>
+                        <div class='col-12 py-2 border-bottom'>
+                            <h2>付款資訊</h2>
+                        </div>
+                        <div class="col-12 py-2">
+                            <label class="form-label" for="MemberName">付款人姓名 <em>*</em></label>
+                            <input class="form-control" type="text" id="MemberName" name="MemberName" class="info"
+                                placeholder="付款人姓名" value="@SessionService.UserName" />
+                        </div>
+                        <div class="col-12 py-2">
+                            <label class="form-label" for="MemberEmail">電子信箱<em>*</em></label>
+                            <input class="form-control" type="email" id="MemberEmail" name="MemberEmail" class="info"
+                                placeholder="電子信箱" value="@userData.ContactEmail" />
+                        </div>
+                        <div class="col-12 py-2">
+                            <label class="form-label" for="MemberTel">連絡電話<em>*</em></label>
+                            <input class="form-control" type="text" id="MemberTel" name="MemberTel" class="info"
+                                placeholder="連絡電話" value="@userData.ContactTel" />
+                        </div>
+                        <div class=" col-12 col-md-6 py-2">
+                            <label class="form-label">運送方式<em>*</em></label>
+                            @Html.DropDownListFor(m => m.ShippingNo, ShippingList, new
+                                {
+                                    @class = "form-control"
+                                })
+                        </div>
+                        <div class="col-12 col-md-6 py-2">
+                            <label class="form-label">付款方式<em>*</em></label>
+                            @Html.DropDownListFor(m => m.PaymentNo, PaymentList, new
+                                {
+                                    @class = "form-control"
+                                })
+                        </div>
+                        <div class="col-12 py-2">
+                            <label class="form-label" for="MemberAddress">聯絡地址<em>*</em></label>
+                            <input class="form-control" type="text" id="MemberAddress" name="MemberAddress"
+                                class="info mb-10" placeholder="聯絡地址" value="@userData.ContactAddress" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="row">
+                        <div class="col-12 py-2">
+                            <div class="ship-toggle">
+                                <input type="checkbox" id="IsDiffenceMember" name="IsDiffenceMember" checked />
+                                <label for="IsDiffenceMember">收件人資料與購買人資料不同</label>
+                            </div>
+                        </div>
+                        <div class="row ship-acc-body">
+                            <div class="col-12 py-2">
+                                <label class="form-label" for="ReceiveName">收件人姓名</label>
+                                <input class="form-control" type="text" id="ReceiveName" name="ReceiveName" class="info"
+                                    placeholder="收件人姓名" />
+                            </div>
+                            <div class="col-12 py-2">
+                                <label class="form-label" for="ReceiveEmail">電子信箱<em>*</em></label>
+                                <input class="form-control" type="email" id="ReceiveEmail" name="ReceiveEmail" class="info"
+                                    placeholder="電子信箱" />
+                            </div>
+                            <div class="col-12 py-2">
+                                <label class="form-label" for="ReceiveTel">連絡電話<em>*</em></label>
+                                <input class="form-control" type="text" id="ReceiveTel" name="ReceiveTel" class="info"
+                                    placeholder="連絡電話" />
+                            </div>
+                            <div class="col-12 py-2">
+                                <label class="form-label" for="ReceiveAddress">聯絡地址<em>*</em></label>
+                                <input class="form-control" type="text" id="ReceiveAddress" name="ReceiveAddress"
+                                    class="info mb-10" placeholder="聯絡地址" />
+                            </div>
+                        </div>
+                        <div class="col-12 py-2">
+                            <label class="form-label">備註:</label><br>
+                            <textarea class="form-control" id="Remark" name="Remark" placeholder="請輸入留言，最多200個字"
+                                maxlength="200" style="resize: none;"></textarea>
+                        </div>
+                        <div class="col-12 col-md-6 py-2">
+                            <a class="btn btn-outline-secondary w-100"
+                                href="@Url.Action("Index" , "Cart" , new{area=""})">返回購物車
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-6 py-2">
+                            <input class="btn btn-outline-danger w-100" type="submit" value="確認結帳資訊">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</main>

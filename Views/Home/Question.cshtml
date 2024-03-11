@@ -1,0 +1,62 @@
+@model IEnumerable<FreshBox.Models.Questions>
+
+@{
+    ViewData["Title"] = "常見問題";
+    Layout = "_Layout";
+    string str_qaid = "";
+}
+
+<!--==================================================-->
+<!-- Start Banner區域 -->
+<!--==================================================-->
+<section class="banner-inner-section">
+    <div class="dark-overlay">
+        <div class="container" style="transform:translateY(100%);">
+            <div class="row">
+                <div class="col-lg-12 wow fadeInUp animated animated"
+                    style="visibility: visible; animation-name: fadeInUp;">
+                    <div class="banner-inner-title">
+                        <h1>@ViewData["Title"]</h1>
+                    </div>
+                    <div class="banner-inner-link">
+                        <ul>
+                            <li><a href="@Url.Action("Index" , "Home" , new{ area=""})">首頁</a></li>
+                            <li><i class="bi bi-arrow-right"></i></li>
+                            <li><a href="@Url.Action("Question" , "Home" , new{ area=""})">@ViewData["Title"]</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--==================================================-->
+<!-- End Banner區域 -->
+<!--==================================================-->
+
+<!--==================================================-->
+<!-- Start 常見問題區域 -->
+<!--==================================================-->
+<!-- 常見問題 -->
+<div class="faq-inner-section">
+    <div class="container">
+        <ul class="accordion">
+            @{
+                int int_index = 0;
+                foreach (var item in Model)
+                {
+                    int_index++;
+                    str_qaid = $"qa{int_index}";
+                    <li>
+                        <a><span> @item.QuestionText </span></a>
+                        <p class="wow fadeInUp animated" id="@str_qaid">@item.AnswerText</p>
+                    </li>
+                }
+            }
+
+        </ul>
+    </div>
+</div>
+<!--==================================================-->
+<!-- End Organic Faq 區域 -->
+<!--==================================================-->

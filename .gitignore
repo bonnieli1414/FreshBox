@@ -1,0 +1,52 @@
+# 忽略 Visual Studio 項目文件
+*.suo
+*.user
+*.sln.docstates
+.vs/
+
+# 忽略 Visual Studio Code 相關文件夾
+*bin/
+*obj/
+
+# 忽略 NuGet 包目錄
+packages/
+
+# 忽略 LibMan 生成的文件
+lib/
+
+# 忽略 Visual Studio 文件
+*.user
+*.suo
+*.userprefs
+*.sln.docstates
+
+# 忽略 ReSharper 相關文件夾
+_ReSharper*/
+
+# 忽略 Web 編譯輸出
+*.deploy
+
+# 忽略 node_modules 文件夾
+node_modules/
+
+# 忽略編譯產物和日誌文件
+[Tt]est[Rr]esult*/
+[Bb]in
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+[Ll][Oo][Gg]s/
+[Ll][Ii][Bb]/
+[Ll][Ii][Bb]64/
+[Ll][Oo][Gg]/
+[Ll][Oo][Gg][Ss]/
+*.log
+*.pot
+*.dat
+*.bak
+*.mdb
+*.ldb
+*.opendb

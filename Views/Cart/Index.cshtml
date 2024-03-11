@@ -1,0 +1,162 @@
+@model IEnumerable<FreshBox.Models.Carts>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+    using var cart = new z_repoCarts();
+    int int_amount = cart.GetCartTotal();
+    int int_freight = (int_amount > 0) ? 60 : 0;
+    int int_total = int_amount + int_freight;
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@Url.Content("~/vendor/rewear/css/cart-payment.css")" />
+}
+
+<main id="container">
+    <div class="row wrapper">
+        <div class="col-lg-12">
+            <!-- 購物車 -->
+            <div id="cart">
+                <div class="cart-page-area">
+                    <form method="post" action="#">
+                        <div class="table-responsive mb-4">
+                            <table class="shop_table-2 cart">
+                                <thead>
+                                    <tr>
+                                        <th class="product-thumbnail">圖片</th>
+                                        @* 套用product-price格式 *@
+                                        <th class="product-price">商品編號</th>
+                                        <th class="product-name">商品名稱</th>
+                                        <th class="product-price">單價</th>
+                                        <th class="product-quantity">數量</th>
+                                        <th class="product-subtotal">小計</th>
+                                        <th class="product-remove">刪除</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="cart_item" data-cart=@item.Id>
+                                            <td class="item-img">
+                                                <a
+                                                    href="@Url.Action("Detail" , "Product" , new {area = "" , id = item.ProdNo})">
+                                                    <img src="@Url.Content($"~/images/product/{item.ProdNo}/{item.ProdNo}.jpg")"
+                                                        alt="" />
+                                                </a>
+                                            </td>
+                                            <td class="item-price prod-no">
+                                                @item.ProdNo
+                                            </td>
+                                            <td class="item-title">
+                                                <a
+                                                    href="@Url.Action("Detail" , "Product" , new {area = "" , id = item.ProdNo})">
+                                                    @item.ProdName
+                                                </a>
+                                            </td>
+                                            <td class="item-price">
+                                                $@item.OrderPrice
+                                            </td>
+                                            <td class="item-qty">
+                                                <div class="cart-quantity">
+                                                    <div class="cart-plus-minus">
+                                                        <div class="dec qtybutton">-</div>
+                                                        <input value="@item.OrderQty" name="qtybutton"
+                                                            class="cart-plus-minus-box" type="text" />
+                                                        <div class="inc qtybutton">+</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="total-price"><strong>$@item.OrderAmount</strong></td>
+                                            <td class="remove-item">
+                                                <a href="@Url.Action("DeleteCart" , "Cart" , new{area="", id = item.Id})"><i
+                                                        class="fa fa-trash-o">刪除</i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="cart-bottom-area">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-7">
+                                    <div class="update-coupne-area">
+                                        <ul>
+                                            <li>
+                                                1.&nbsp;&nbsp;圖片僅供說明方式，商品以收到實物為主。🙏🙏
+                                            </li>
+                                            <li>
+                                                2.&nbsp;&nbsp;請注意⚠️⚠️商品尺寸規格，以免收到不合適的商品。如有需要，請先詢問客服或索取更詳細的尺寸資訊。
+                                            </li>
+                                            <li>
+                                                3.&nbsp;&nbsp;👍👍請確認收件地址和聯繫方式的正確性，以免發生物流問題或無法聯繫到您。
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-5">
+                                    <div class="cart-total-area">
+                                        <div class="sub-shipping">
+                                            <p class="clearfix">小計<span>$@int_amount</span></p>
+                                            <p class="clearfix">運費<span>$@int_freight</span></p>
+                                        </div>
+                                        <div class="process-cart-total">
+                                            <p>總計<span>$@int_total</span></p>
+                                        </div>
+                                        <div class="col-lg-12 d-flex justify-content-between mt-4 text-center">
+                                            <div class="col-lg-6" style="width: 45%">
+                                                <a class="btn-def btn2"
+                                                    href="@Url.Action("Index" , "Home" , new {area = ""})"
+                                                    style="display: block">繼續購物</a>
+                                            </div>
+                                            <div class="col-lg-6" style="width: 45%">
+                                                <a class="btn-def btn2 btnmy"
+                                                    href="@Url.Action("Payment" , "Home" , new {area = ""})"
+                                                    style="display: block">填寫付款資訊</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+@section BodyScript
+{
+    <script>
+        $(".qtybutton").on("click", function (e) {
+            var $button = $(this);
+            var prodNo = $button.parent().parent().parent().parent().find(".prod-no").text().trim();
+            var oldValue = $button.parent().find("input").val();
+            if ($button.text() == "+") {
+                var newVal = parseFloat(oldValue) + 1;
+            } else {
+                // Don't allow decrementing below zero
+                if (oldValue > 1) {
+                    var newVal = parseFloat(oldValue) - 1;
+                } else {
+                    newVal = 1;
+                }
+            }
+        @* $button.parent().find("input").val(newVal); *@
+                $.ajax({
+                    type: "GET",
+                    contentType: "application/json; charset=UTF-8",
+                    url: '@Url.Action("UpdateQty", "Cart", new { area = "" })',
+                    data: { "ProdNo": prodNo, "Qty": newVal },
+                    dataType: "json",
+                    success: function (res) {
+                        window.location.reload();
+                    },
+                    error: function (err) {
+                        alert('發生錯誤,無法更新購物車!!');
+                    }
+                });
+        });
+    </script>
+}

@@ -1,0 +1,180 @@
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@model IEnumerable<FreshBox.Models.Products>
+
+@{
+    using var shopService = new ShopService();
+    ViewData["Title"] = "商品列表";
+    Layout = "_LayoutAdmin";
+}
+
+
+
+<table class="table table-bordered" style="width: 101%;">
+    <thead class="table-secondary">
+        <tr>
+            <th>
+                @Html.ActionLinkButton(enFormLinkButton.CreateEdit, 0)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.IsEnabled)
+            </th>
+            <th>
+                @Html.ColumnSort("ProdName", @Html.DisplayNameFor(model => model.ProdName))
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.ProdNo)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.ProdName)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.StatusName)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.CostPrice)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.MarketPrice)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.MinPrice)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.Remark)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int index = 0;
+        }
+        @foreach (var item in Model)
+        {
+            index++;
+            ActionService.RowId = item.Id;
+            ActionService.RowData = (item.ProdName == null) ? "" : item.ProdNo + " " + item.ProdName;
+            ShopService.PhotoNo = item.ProdNo;
+            <tr>
+                <td>
+                    @Html.ActionLinkButton(enFormLinkButton.CreateEdit, item.Id, htmlAttributes: new
+                        {
+                            @class =
+                             "my-1"
+                        })
+                    @Html.InputButton(enFormInputButton.DeleteAlert)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsEnabled)
+                </td>
+                <td class="text-center">
+                    <button class="border border-0" type="button" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop@(index)" style="width: 50px; height: 50px;">
+                        <img class="w-100" src="@Url.Content(item.ProdImage)?v=@DateTime.UtcNow.Ticks" alt="@item.ProdName" title="按我 開啟大圖">
+                    </button>
+                    <div class="modal fade" id="staticBackdrop@(index)" data-bs-keyboard="false" tabindex="-1"
+                        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog  modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">商品圖片</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <nav id="navbar-PicChange" class="navbar bg-body-tertiary px-3 mb-3">
+                                        <h3 class="h4 text-success m-0 pt-2">@item.ProdNo 圖片檢視</h3>
+                                        <ul class="nav nav-pills">
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                                                    role="button" aria-expanded="false">商品圖片列表</a>
+                                                <ul class="dropdown-menu">
+                                                    @foreach (var image in shopService.GetProductImageListName(item.ProdNo))
+                                                    {
+                                                        <li><a class="dropdown-item"
+                                                                href="#scrollspyHeading@(image)">@(image)</a></li>
+                                                    }
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                    <div data-bs-spy="scroll" data-bs-target="#navbar-PicChange"
+                                        data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true"
+                                        class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
+                                        <div class="d-flex justify-content-between align-items-center"
+                                            style="background-color: #7fbd43;">
+                                            <h4 class="text-light m-0 px-2" id="scrollspyHeading@(@item.ProdNo)">封面圖片</h4>
+                                            <div class="px-2">
+                                                @await Html.PartialAsync("_PartialUploadPhoto")
+                                            </div>
+                                        </div>
+                                        <p><img class="w-100" src="@Url.Content(item.ProdImage)?v=@DateTime.UtcNow.Ticks">
+                                        </p>
+                                    </div>
+                                    <div data-bs-spy="scroll" data-bs-target="#navbar-PicChange"
+                                        data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true"
+                                        class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
+                                        @foreach (var image in shopService.GetProductImageListName(item.ProdNo))
+                                        {
+                                            int slashIndex = image.IndexOf('/');
+                                            ShopService.PhotoNo = image.Substring(slashIndex + 1, image.Length - slashIndex - 5);
+
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <p class="text-success m-0 p-0" id="scrollspyHeading@(image)">圖@(image)
+                                                </p>
+                                                <div>
+                                                    @await Html.PartialAsync("_PartialUploadPhoto")
+                                                </div>
+                                            </div>
+                                            <p><img class="w-100 position-relative"
+                                                    src="@Url.Content("~/images/product/"+image)?v=@DateTime.UtcNow.Ticks">
+                                                @* <a class="position-absolute" href="@Url.Action("DeletePhoto" ,ActionService.Controller ,new { area = ActionService.Area ,id = ActionService.RowId ,photoNo = ShopService.PhotoNo})")" title="刪除" data-bs-dismiss="modal" style="right:32px;"><img width="48px" src="@Url.Content("~/vendor/rewear/images/icons/close.png")"></a> *@
+                                                <a id="Delete" class="position-absolute" href="#" title="刪除" style="right:32px;" onclick="DeleteData('@(ShopService.PhotoNo)', '@(ShopService.PhotoNo)圖片')"><img width="48px" src="@Url.Content("~/vendor/rewear/images/icons/close.png")" /></a>
+                                            </p>
+                                        }
+                                        <a href="@Url.Action("AddPhotoUpload" ,ActionService.Controller ,new { area = ActionService.Area ,id = ActionService.RowId ,photoNo = ShopService.PhotoNo})" title="新增圖片"><img width="48px" src="@Url.Content("~/vendor/rewear/images/icons/add.png")" alt="新增圖片" /></a>
+                                    </div>
+                                </div>
+                                <div class="modal-footer justify-content-center">
+                                    <a href="#scrollspyHeading@(item.ProdNo)" title="回到最上面">
+                                        <img width="48px" src="@Url.Content("~/vendor/rewear/images/icons/UpTop.png")">
+                                    </a>
+                                    <a href="#" title="關閉" data-bs-dismiss="modal"><img width="48px"
+                                            src="@Url.Content("~/vendor/rewear/images/icons/close.png")"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProdNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProdName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatusName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CostPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MarketPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MinPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remark)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

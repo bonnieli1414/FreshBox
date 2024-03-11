@@ -1,0 +1,107 @@
+@model IEnumerable<FreshBox.Models.Orders>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@Url.Content("~/vendor/rewear/css/order-management.css")" />
+}
+
+<style>
+    .page-item {
+        width: 90px;
+    }
+
+    .page-link {
+        width: 90px;
+    }
+</style>
+<main id="container">
+    <section class="orderManagement overflow-auto" id="orderManagement">
+        <div class="text-center">
+            <h1 class="text-success mx-auto">訂單管理系統</h1>
+            <p class="mx-auto">@SessionService.PageInfo</p>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>訂單編號</th>
+                    <th>訂單日期</th>
+                    <th>訂單總金額</th>
+                    <th>訂單狀態</th>
+                    <th>付款方式</th>
+                    <th>運送方式</th>
+                    <th>訂單詳情</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.SheetNo</td>
+                        <td>@item.SheetDate.ToString("yyyy/MM/dd")</td>
+                        <td>@item.TotalAmount</td>
+                        <td>@item.StatusName</td>
+                        <td>@item.PaymentName</td>
+                        <td>@item.ShippingName</td>
+                        <td class="functionBtn">
+                            <a href="@Url.Action("Detail" , "Order" , new {area = "" , id = item.SheetNo})">查看明細</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @if (SessionService.PageCount > 1)
+        {
+            <div class="pageBtn py-5">
+                <ul class="pagination d-flex justify-content-center">
+                    <li class="page-item">
+                        @if (SessionService.Page > 1)
+                        {
+                            <a href="@Url.Action("Index" , "Order" , new {area = "" , id = 1})" class="page-link">第一頁</a>
+                        }
+                        else
+                        {
+                            <a href="#" class="page-link">第一頁</a>
+                        }
+                    </li>
+                    <li class="page-item">
+                        @if (SessionService.Page > 1)
+                        {
+                            <a href="@Url.Action("Index" , "Order" , new {area = "" , id = (SessionService.Page - 1)})"
+                                class="page-link">上一頁</a>
+                        }
+                        else
+                        {
+                            <a href="#" class="page-link">上一頁</a>
+                        }
+                    </li>
+                    <li class="page-item">
+                        @if (SessionService.Page < SessionService.PageCount)
+                        {
+                            <a href="@Url.Action("Index" , "Order" , new {area = "" , id = (SessionService.Page + 1)})"
+                                class="page-link">下一頁</a>
+                        }
+                        else
+                        {
+                            <a href="#" class="page-link">下一頁</a>
+                        }
+                    </li>
+                    <li class="page-item">
+                        @if (SessionService.Page < SessionService.PageCount)
+                        {
+                            <a href="@Url.Action("Index" , "Order" , new {area = "" , id = SessionService.PageCount})"
+                                class="page-link">最後一頁</a>
+                        }
+                        else
+                        {
+                            <a href="#" class="page-link">最後一頁</a>
+                        }
+                    </li>
+                </ul>
+            </div>
+        }
+    </section>
+</main>

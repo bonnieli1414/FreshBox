@@ -1,0 +1,126 @@
+@model IEnumerable<FreshBox.Models.OrderDetails>
+
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "_Layout";
+    string str_sheet_no = Model.FirstOrDefault().ParentNo;
+    var OrderData = new Orders();
+    using var order = new z_repoOrders();
+    string str_image_url = "";
+    int int_amount = Model.Sum(m => m.OrderAmount);
+    int int_freight = (int_amount > 0) ? 60 : 0;
+    int int_total = int_amount + int_freight;
+    OrderData = order.GetData(str_sheet_no);
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@Url.Content("~/vendor/rewear/css/order-details.css")" />
+}
+
+<main id="container" class="py-5">
+    <!-- orderList -->
+    <section role="tabpanel" class="tab-pane fade show active" id="orderDetails">
+        <div class="orderList-page-area">
+            <!-- 1. list -->
+            <div class="table-responsive mb-20 list">
+                <h2 class="text-success">訂單明細</h2>
+                <table class="shop_table-2 cart table">
+                    <thead>
+                        <tr>
+                            <th class="product-thumbnail">圖片</th>
+                            <th class="product-name">商品名稱</th>
+                            <th class="product-price">單價</th>
+                            <th class="product-quantity">數量</th>
+                            <th class="product-subtotal">小計</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            str_image_url = $"~/images/product/{item.ProdNo}/{item.ProdNo}.jpg";
+                            <tr class="orderList_item">
+                                <td class="item-img">
+                                    <img src="@Url.Content(str_image_url)" alt="" />
+                                </td>
+                                <td class="item-title">@item.ProdName</td>
+                                <td class="item-price">$@item.OrderPrice</td>
+                                <td>@item.OrderQty</td>
+                                <td class="total-price"><strong>$@item.OrderAmount</strong></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- 2. amount -->
+            <div class="amount">
+                <div class="row">
+                    <div class="col-lg-8 col-md-7"></div>
+                    <div class="col-lg-4 col-md-5">
+                        <div class="orderList-total-area totalContainer">
+                            <div class="sub-shipping subtotal textleft">
+                                <p>小計<span>$@int_amount</span></p>
+                                <p>運費<span>$@int_freight</span></p>
+                            </div>
+                            <div class="process-orderList-total total textleft">
+                                <p>總計<span>$@int_total</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- orderInfo -->
+    <section class="orderInfo" id="orderInfo">
+        <form class="form" action="#">
+            <h2 class="text-success">訂單資訊</h2>
+            <div class="row">
+                <div class="orderPart col-md-3 col-lg-3">
+                    <h3>訂單詳情</h3>
+                    <div class="textleft">
+                        <p>訂單編號：<span>@OrderData.SheetNo</span></p>
+                        <p>訂單日期：<span>@OrderData.SheetDate.ToString("yyyy/MM/dd")</span></p>
+                        <p>訂單狀態：<span>@OrderData.StatusName</span></p>
+                        <p>訂單備註：<span>@OrderData.Remark</span></p>
+                    </div>
+                </div>
+                <div class="payInfo col-md-4 col-lg-4">
+                    <h3>付款人資訊</h3>
+                    <div class="textleft">
+                        <p>姓名：<span>@OrderData.CustName</span></p>
+                        <p class="text-break">電子郵件：<span>@OrderData.ReceiverEmail</span></p>
+                        <p>
+                            付款方式：<span>@OrderData.PaymentName</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="receiveInfo col-md-4 col-lg-4">
+                    <h3>收件人資訊</h3>
+                    <div class="textleft">
+                        <p>姓名：<span>@OrderData.ReceiverName</span></p>
+                        <p class="text-break">電子郵件：<span>@OrderData.ReceiverEmail</span></p>
+                        <p>收貨方式：<span>@OrderData.ShippingName</span></p>
+                        <p>門市名稱/地址：<span>@OrderData.ReceiverAddress</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center pt-2 pb-5">
+                <div class="col-lg-5 col-md-5 col-sm-3 my-3">
+                    <a class="backBtn rounded"
+                        href="@Url.Action("Index" , "Order" , new {area = "" , id = SessionService.Page})">
+                        上一頁
+                    </a>
+                </div>
+                @if (OrderData.StatusCode != "CC" && OrderData.StatusCode != "RT")
+                {
+                    <div class="col-lg-5 col-md-5 col-sm-3 my-3">
+                        <a class="cancelBtn rounded"
+                            href="@Url.Action("Cancel" , "Order" , new {area = "" , id = OrderData.SheetNo})">
+                            取消訂單
+                        </a>
+                    </div>
+                }
+            </div>
+        </form>
+    </section>
+</main>

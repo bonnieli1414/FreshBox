@@ -1,0 +1,54 @@
+@model IEnumerable<FreshBox.Models.Roles>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_LayoutAdmin";
+}
+
+<table class="table table-bordered">
+    <thead class="table-secondary">
+        <tr>
+            <th>
+                @await Html.PartialAsync("_PartialFormCreate")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsEnabled)
+            </th>
+            <th>
+                @Html.ColumnSort("RoleNo", @Html.DisplayNameFor(model => model.RoleNo))
+            </th>
+            <th>
+                @Html.ColumnSort("RoleName", @Html.DisplayNameFor(model => model.RoleName))
+            </th>
+            <th>
+                @Html.ColumnSort("Remark", @Html.DisplayNameFor(model => model.Remark))
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            ActionService.RowId = item.Id;
+            ActionService.RowData = (item.RoleName == null) ? "" : $"{item.RoleNo} {item.RoleName}";
+
+                <tr>
+                    <td>
+                    @await Html.PartialAsync("_PartialFormEdit")
+                    @await Html.PartialAsync("_PartialFormDelete")
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.IsEnabled)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.RoleNo)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.RoleName)
+                    </td>
+                    <td class="table-wrap">
+                    @Html.DisplayFor(modelItem => item.Remark)
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,219 @@
+@model FreshBox.Models.Employees
+@{
+    ViewData["Title"] = "CreateEdit";
+    Layout = "_LayoutAdmin";
+    var DeptNoList = new List<SelectListItem>();
+    var GenderCodeList = new List<SelectListItem>();
+    var TitleNoList = new List<SelectListItem>();
+    using var repoDeptNo = new z_repoDepartments();
+    using var repoGenderCode = new z_repoCodeDatas();
+    using var repoTitleNo = new z_repoTitles();
+    DeptNoList = repoDeptNo.GetDropDownList(true);
+    GenderCodeList = repoGenderCode.GetDropDownList("Gender", false);
+    TitleNoList = repoTitleNo.GetDropDownList(true);
+}
+
+@using (Html.BeginForm())
+{
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @Html.HiddenFor(model => model.Id)
+    <div class="row py-2">
+        <div class="col-md-6">
+            <div class="row form-group align-items-center ">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.GenderName)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.GenderName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.GenderName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row form-group align-items-center ">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.DeptName)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.DeptName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DeptName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row py-2">
+        <div class="col-md-6">
+            <div class="row form-group align-items-center ">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.TitleName)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.TitleName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TitleName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row form-group align-items-center ">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.IsValid)
+                </div>
+                <div class="col-md-8">
+                    @Html.CheckBoxFor(model => model.IsValid, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IsValid, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row py-2">
+        <div class="col-md-6">
+            <div class="row form-group align-items-center ">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.EmpNo)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.EmpNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EmpNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row form-group align-items-center ">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.EmpName)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.EmpName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EmpName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row py-2">
+        <div class="col-md-6">
+            <div class="row form-group align-items-center ">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.GenderCode)
+                </div>
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.GenderCode, GenderCodeList , new { @class = "form-control selectpicker" , data_live_search = "true" })
+                    @Html.ValidationMessageFor(model => model.GenderCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row form-group align-items-center ">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.DeptNo)
+                </div>
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.DeptNo, DeptNoList , new { @class = "form-control selectpicker" , data_live_search = "true" })
+                    @Html.ValidationMessageFor(model => model.DeptNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row py-2">
+        <div class="col-md-6">
+            <div class="row form-group align-items-center ">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.TitleNo)
+                </div>
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.TitleNo, TitleNoList , new { @class = "form-control selectpicker" , data_live_search = "true" })
+                    @Html.ValidationMessageFor(model => model.TitleNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row form-group align-items-center ">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.Birthday)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Birthday, new { htmlAttributes = new { @class = "form-control datepicker" , type="text" } })
+                    @Html.ValidationMessageFor(model => model.Birthday, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row py-2">
+        <div class="col-md-6">
+            <div class="row form-group align-items-center ">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.OnboardDate)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.OnboardDate, new { htmlAttributes = new { @class = "form-control datepicker" , type="text" } })
+                    @Html.ValidationMessageFor(model => model.OnboardDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row form-group align-items-center ">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.LeaveDate)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.LeaveDate, new { htmlAttributes = new { @class = "form-control datepicker" , type="text" } })
+                    @Html.ValidationMessageFor(model => model.LeaveDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row py-2">
+        <div class="col-md-6">
+            <div class="row form-group align-items-center ">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.ContactEmail)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.ContactEmail, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ContactEmail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row form-group align-items-center ">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.ContactTel)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.ContactTel, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ContactTel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row py-2">
+        <div class="col-md-6">
+            <div class="row form-group align-items-center ">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.ContactAddress)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.ContactAddress, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ContactAddress, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row form-group align-items-center ">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.Remark)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Remark, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Remark, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row form-group">
+        <div class="col-md-12">
+            @Html.InputButton(enFormInputButton.Submit)
+            @Html.ActionReturnButton()
+        </div>
+    </div>
+}

@@ -1,0 +1,514 @@
+﻿@{
+	using var cate = new z_repoCategorys();
+	var cateTopList = cate.GetTopCategoryList();
+	int int_count = 0;
+	using var cart = new z_repoCarts();
+	int_count = cart.GetCartCount();
+}
+
+<!DOCTYPE HTML>
+<html lang="zh-Hant-TW">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="鮮盒購FreshBox，團購網，新鮮生活，盒盒驚喜 !">
+
+	<title>@AppService.AppName</title>
+
+	<!-- Favicon -->
+	<link href="@Url.Content("~/favicon.ico")" rel="icon">
+	<!-- google font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Gudea:wght@400;700&family=Kalam:wght@400;700&family=Ms+Madi&display=swap" />
+
+
+	<!--==================================================-->
+	<!-- Start CSS 區域 -->
+	<!--==================================================-->
+	<link rel="stylesheet" href="@Url.Content("~/lib/font-awesome/css/all.min.css")" asp-append-version="true" />
+	<link rel="stylesheet" href="@Url.Content("~/lib/jqueryui/themes/base/jquery-ui.min.css")"
+		asp-append-version="true" />
+	<link rel="stylesheet" href="@Url.Content("~/lib/bootstrap/css/bootstrap.min.css")"
+		asp-append-version="true" />
+	<link rel="stylesheet" href="@Url.Content("~/lib/bootstrap-icons/font/bootstrap-icons.min.css")"
+		asp-append-version="true" />
+	<link rel="stylesheet" href="@Url.Content("~/lib/slick-carousel/slick.min.css")" asp-append-version="true" />
+	<!-- Owl Carousel CSS Link -->
+	<link rel="stylesheet" href="@Url.Content("~/vendor/moban/static/css/owl.carousel.min.css")"
+		asp-append-version="true" />
+	<!-- Animate CSS Link -->
+	<link rel="stylesheet" href="@Url.Content("~/vendor/moban/static/css/animate.css")"
+		asp-append-version="true" />
+	<!-- Animated text CSS Link -->
+	<link rel="stylesheet" href="@Url.Content("~/vendor/moban/static/css/animated-text.css")"
+		asp-append-version="true" />
+	<!-- Font Awesome CSS Link -->
+	<link rel="stylesheet" href="@Url.Content("~/vendor/moban/static/css/all.min.css")"
+		asp-append-version="true" />
+	<!-- Font Flaticon CSS Link -->
+	<link rel="stylesheet" href="@Url.Content("~/vendor/moban/static/css/flaticon.css")"
+		asp-append-version="true" />
+	<!-- Flaticon CDN Link -->
+	<link rel='stylesheet' href="@Url.Content("~/vendor/moban/static/css/uicons-solid-straight.css")"
+		asp-append-version="true" />
+	<!-- Custom default CSS Link -->
+	<link rel="stylesheet" href="@Url.Content("~/vendor/moban/static/css/custom-default.css")"
+		asp-append-version="true" />
+	<!-- Meanmenu CSS Link -->
+	<link rel="stylesheet" href="@Url.Content("~/vendor/moban/static/css/meanmenu.min.css")"
+		asp-append-version="true" />
+	<!-- Transitions CSS Link -->
+	<link rel="stylesheet" href="@Url.Content("~/vendor/moban/static/css/owl.transitions.css")"
+		asp-append-version="true" />
+	<!-- Venobox CSS Link -->
+	<link rel="stylesheet" href="@Url.Content("~/vendor/moban/static/css/venobox.css")"
+		asp-append-version="true" />
+	<!-- Custom Style CSS Link -->
+	<link rel="stylesheet" href="@Url.Content("~/vendor/moban/static/css/style.css")"
+		asp-append-version="true" />
+	<!-- Responsive CSS Link -->
+	<link rel="stylesheet" href="@Url.Content("~/vendor/moban/static/css/responsive.css")"
+		asp-append-version="true" />
+	<link rel="stylesheet" href="@Url.Content("~/vendor/moban/static/css/clash-display.css")"
+		asp-append-version="true" />
+
+	
+	<!--==================================================-->
+	<!-- 依需要引用不同css和js檔案 -->
+	<!--==================================================-->
+	@await RenderSectionAsync("Styles", required: false)
+	@await RenderSectionAsync("HeadScript", required: false)
+</head>
+
+<body>
+
+	<!--==================================================-->
+	<!-- Start Header 區域 -->
+	<!--==================================================-->
+	<header class="header-manu-section" id="sticky-header">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-2 ps-5">
+					<div class="header-menu-logo text-center">
+						<a href="@Url.Action("Index" , "Home" , new{area=""})">
+							<img class="img-fluid" width="96px" src="@Url.Content("~/images/app/AppLogo.png")"
+								alt="FreshBox Logo" />
+						</a>
+					</div>
+				</div>
+				<div class="col-lg-10">
+					<nav class="header-menu">
+						<ul>
+							<li>
+								<a href="@Url.Action("Index" , "Category" , new {area = "", id = ""})"
+									class="active">全部商品
+									<i class="bi bi-chevron-down"></i>
+								</a>
+								<div class="submenu">
+									<ul>
+										@foreach (var item in cateTopList)
+										{
+											<li>
+												<a
+													href="@Url.Action("Index" , "Category" , new {area = "", id = item.CategoryNo})">@item.CategoryName
+												</a>
+											</li>
+										}
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a href="#">關於我們
+									<i class="bi bi-chevron-down"></i>
+								</a>
+								<div class="submenu">
+									<ul>
+										<li><a href="@Url.Action("About" , "Home" , new {area = ""})">關於我們</a></li>
+										<li><a href="@Url.Action("Question" , "Home" , new {area = ""})">常見問題</a></li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a href="@Url.Action("Contact" , "Home" , new {area = ""})">聯絡我們</a>
+							</li>
+							<li>
+								<div class="header-src-btn">
+									<div class="search-box-btn search-box-outer">
+										<i class="bi bi-search"></i>
+									</div>
+								</div>
+							</li>
+							<!-- 登入 -->
+							<li>
+								<div class="d-inline-block align-middle">
+									<img width="32px" src="@Url.Content(SessionService.UserImage)" <span
+										class="login pe-1">@SessionService.UserName</span>
+								</div>
+								<div class="submenu" style="left: -60px;">
+									<ul class="ps-0">
+										@if (SessionService.IsLogin)
+										{
+											<li><a href="@Url.Action("Profile" , "Web" , new {area = ""})">我的帳號</a></li>
+											<li><a href="@Url.Action("Index" , "Order" , new {area = "Member"})">訂單管理</a>
+											</li>
+											<li><a href="@Url.Action("ResetPassword" , "Web" , new {area = ""})">重設密碼</a>
+											</li>
+											<li><a href="@Url.Action("Logout" , "Web" , new {area = ""})">登出</a></li>
+										}
+										else
+										{
+											<li><a href="@Url.Action("Login" , "Web" , new {area = ""})">我的帳號</a></li>
+										}
+									</ul>
+								</div>
+							</li>
+							<!-- 購物車 -->
+							<li>
+								<a href="@Url.Action("Index" , "Cart" , new {area = ""})">
+									<i class="bi bi-cart3">
+										<span class="badge bg-warning">@int_count</span>
+									</i>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!--==================================================-->
+	<!-- End Header 區域 -->
+	<!--==================================================-->
+
+	<!--==================================================-->
+	<!-- Start 漢堡選單 區域 -->
+	<!--==================================================-->
+	<div class="mobile-menu-area sticky d-sm-block d-md-block d-lg-none ">
+		<div class="mobile-menu">
+			<nav class="header-menu">
+				<ul class="nav_scroll">
+					<li class="menu-item-has-children"><a
+							href="@Url.Action("Index" , "Home" ,new {area = ""})">@AppService.AppName</a>
+					</li>
+					<li class="menu-item-has-children"><a
+							href="@Url.Action("Index" , "Category" , new {area = "", id = ""})">全部商品</a>
+					</li>
+					@foreach (var item in cateTopList)
+					{
+						<li><a
+								href="@Url.Action("Index" , "Category" , new {area = "", id = item.CategoryNo})">@item.CategoryName</a>
+						</li>
+					}
+					<li class="menu-item-has-children"><a
+							href="@Url.Action("About" , "Home" , new {area = ""})">關於我們</a>
+					</li>
+					<li class="menu-item-has-children"><a
+							href="@Url.Action("Contact" , "Home" , new {area = ""})">聯絡我們</a>
+					</li>
+					<li class="menu-item-has-children"><a href="#">@SessionService.UserName</a>
+						<ul class="sub-menu">
+							@if (SessionService.IsLogin)
+							{
+								<li><a href="@Url.Action("Profile" , "Web" , new {area = ""})">我的帳號</a></li>
+								<li><a href="@Url.Action("Index" , "Order" , new {area = "Member"})">訂單管理</a></li>
+								<li><a href="@Url.Action("ResetPassword" , "Web" , new {area = ""})">重設密碼</a></li>
+								<li><a href="@Url.Action("Logout" , "Web" , new {area = ""})">登出</a></li>
+							}
+							else
+							{
+								<li><a href="@Url.Action("Login" , "Web" , new {area = ""})">我的帳號</a></li>
+							}
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!--==================================================-->
+	<!-- End 漢堡選單 區域 -->
+	<!--==================================================-->
+
+	@RenderBody()
+
+	<!--==================================================-->
+	<!-- Start Footer 區域 -->
+	<!--==================================================-->
+	<footer class="footer-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 wow fadeInLeft animated">
+					<div class="footer-bottom-logo">
+						<img src="@Url.Content("~/images/app/AppLogo.png")" alt="FreshBox Logo" class="img-fluid" />
+					</div>
+					<div class="footer-bottomo-social">
+						<ul>
+							<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="#"><i class="fab fa-instagram"></i></a></li>
+							<li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 wow fadeInDown animated">
+					<div class="footer-explore">
+						<div class="footer-explore-title">
+							<h4>搜尋</h4>
+						</div>
+						<ul>
+							<li><a href="@Url.Action("About" , "Home" , new{ area="" })"><img
+										src="@Url.Content("~/vendor/moban/static/picture/footer-icon.png")"
+										alt="icon">關於我們</a>
+							</li>
+							<li><a href="@Url.Action("Question" , "Home" , new{area=""})"><img
+										src="@Url.Content("~/vendor/moban/static/picture/footer-icon.png")"
+										alt="icon">常見問題</a></li>
+							<li><a href="joinUs.html" )">
+									<img src="@Url.Content("~/vendor/moban/static/picture/footer-icon.png")"
+										alt="icon">成為夥伴</a>
+							</li>
+							<li><a href="@Url.Action("Index" , "Category" ,new{area=""})"><img
+										src="@Url.Content("~/vendor/moban/static/picture/footer-icon.png")"
+										alt="icon">新品上市</a></li>
+							<li><a href="@Url.Action("Contact" , "Home" , new{area=""})"><img
+										src="@Url.Content("~/vendor/moban/static/picture/footer-icon.png")"
+										alt="icon">聯絡我們</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 wow fadeInUp animated">
+					<div class="footer-gallary">
+						<div class="footer-gallary-title">
+							<h4>商品分類</h4>
+						</div>
+						<ul>
+							<li><a href="#"><img src="@Url.Content("~/vendor/moban/static/picture/brand-thumb.png")"
+										alt="thumb" style="width:80; height:68px" style="width: 216px;height:168px"></a>
+								<div class="gallary-thumb-btn">
+									<a class="portfolio-icon venobox vbox-item" data-gall="myportfolio"
+										href="moban/static/picture/brand-thumb.png"><i class="bi bi-plus-lg"></i>
+									</a>
+								</div>
+							</li>
+							<li><a href="#"><img src="@Url.Content("~/vendor/moban/static/picture/brand-thumb-2.png")"
+										alt="thumb" style="width:80; height:68px" style="width: 216px;height:168px"></a>
+								<div class="gallary-thumb-btn">
+									<a class="portfolio-icon venobox vbox-item" data-gall="myportfolio"
+										href="moban/static/picture/brand-thumb-2.png"><i class="bi bi-plus-lg"></i>
+									</a>
+								</div>
+							</li>
+							<li><a href="#"><img src="@Url.Content("~/vendor/moban/static/picture/brand-thumb-3.png")"
+										alt="thumb" style="width:80; height:68px"></a>
+								<div class="gallary-thumb-btn">
+									<a class="portfolio-icon venobox vbox-item" data-gall="myportfolio"
+										href="moban/static/picture/brand-thumb-3.png"><i class="bi bi-plus-lg"></i>
+									</a>
+								</div>
+							</li>
+							<li><a href="#"><img src="@Url.Content("~/vendor/moban/static/picture/brand-thumb-4.png")"
+										alt="thumb" style="width:80; height:68px"></a>
+								<div class="gallary-thumb-btn">
+									<a class="portfolio-icon venobox vbox-item" data-gall="myportfolio"
+										href="moban/static/picture/brand-thumb-4.png"><i class="bi bi-plus-lg"></i>
+									</a>
+								</div>
+							</li>
+							<li><a href="#"><img src="@Url.Content("~/vendor/moban/static/picture/brand-thumb-5.png")"
+										alt="thumb" style="width:80; height:68px"></a>
+								<div class="gallary-thumb-btn">
+									<a class="portfolio-icon venobox vbox-item" data-gall="myportfolio"
+										href="moban/static/picture/brand-thumb-5.png"><i class="bi bi-plus-lg"></i>
+									</a>
+								</div>
+							</li>
+							<li><a href="#"><img src="@Url.Content("~/vendor/moban/static/picture/brand-thumb-6.png")"
+										alt="thumb" style="width:80; height:68px"></a>
+								<div class="gallary-thumb-btn">
+									<a class="portfolio-icon venobox vbox-item" data-gall="myportfolio"
+										href="moban/static/picture/brand-thumb-6.png"><i class="bi bi-plus-lg"></i>
+									</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 wow fadeInRight animated">
+					<div class="footer-contact">
+						<div class="footer-contact-title">
+							<h4>聯絡我們</h4>
+						</div>
+						<ul>
+							<li><a href="https://maps.app.goo.gl/AjtFfDd2e6dTgtwv9" target="_blank">326桃園市楊梅區幼獅路二段3號</a>
+							</li>
+							<li>
+								<a href="mailto: freshbox@gmail.com">
+									<i class="fas fa-envelope"></i>
+									freshbox@gmail.com
+								</a>
+							</li>
+							<li>
+								<a href="tel:+886-3-4641162">
+									<i class="fas fa-phone-volume"></i>
+									+886 3 464-1162
+								</a>
+							</li>
+							<li><a href="#"><i class="bi bi-globe2"></i> www.freshbox.com</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="footer-bottom wow fadeInLeft animated">
+					<p>Copyright &copy; 2024.FreshBox All rights reserved.<a target="_blank" href="#"></a></p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!--==================================================-->
+	<!-- End Footer 區域 -->
+	<!--==================================================-->
+
+	<!--==================================================-->
+	<!-- Start scrollup 區域-->
+	<!--==================================================-->
+	<div class="scroll-area">
+		<div class="top-wrap">
+			<div class="go-top-btn-wraper">
+				<div class="prgoress_indicator active-progress">
+					<svg class="progress-circle svg-content" width="100%" height="100%" viewbox="-1 -1 102 102">
+						<path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
+							style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 270.456;">
+						</path>
+					</svg>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--==================================================-->
+	<!-- Ends scrollup 區域 -->
+	<!--==================================================-->
+
+	<!--==================================================-->
+	<!-- Start Curser元素 區域 -->
+	<!--==================================================-->
+	<div class="curser"></div>
+	<div class="curser2"></div>
+	<!--==================================================-->
+	<!-- Ends Curser元素 區域 -->
+	<!--==================================================-->
+
+	<!--==================================================-->
+	<!-- Start 搜尋 Popup 區域 -->
+	<!--==================================================-->
+	<div class="search-popup">
+		<button class="close-search style-two"><i class="fas fa-times"></i></button>
+		<button class="close-search"><i class="fas fa-arrow-up"></i></button>
+		<!-- 搜索 -->
+		<li>
+			<div class="search fl">
+				<!-- 搜索輸入框 -->
+				@using (Html.BeginForm("Search", "Category", new { area = "" }, FormMethod.Post, null, new
+				{
+					@class = "clearfix"
+				}))
+				{
+					<!-- 搜索鍵 -->
+					<div class="icon-s fl">
+						<span class="icofont-search-1"></span>
+					</div>
+					<!-- 文字輸入框 -->
+					<table>
+						<tr>
+							<td width="100%">
+								<div class="searchBox fr">
+									<input id="SearchText" name="SearchText" type="search"
+										class="form-control data-list-search-text border pb-2" placeholder="商品查詢..." />
+								</div>
+							</td>
+							<td>
+								<input type="submit" value="查詢" class="fas fa-search" />
+							</td>
+						</tr>
+					</table>
+				}
+			</div>
+		</li>
+	</div>
+	<!--==================================================-->
+	<!-- End 搜尋 Popup 區域 -->
+	<!--==================================================-->
+
+	<!--==================================================-->
+	<!-- JavaScrift 套件引入 -->
+	<!--==================================================-->
+	<script src="@Url.Content("~/lib/font-awesome/js/all.min.js")" asp-append-version="true"></script>
+	<script src="@Url.Content("~/lib/jquery/jquery.min.js")" asp-append-version="true"></script>
+	<script src="@Url.Content("~/lib/jqueryui/jquery-ui.min.js")" asp-append-version="true"></script>
+	<script src="@Url.Content("~/lib/bootstrap/js/bootstrap.bundle.min.js")" asp-append-version="true"></script>
+	<!-- Modernizr JS -->
+	<script src="@Url.Content("~/vendor/moban/static/js/modernizr-3.5.0.min.js")" asp-append-version="true" />
+	</script>
+	<!-- Popper JS CDN -->
+	<script src="@Url.Content("~/vendor/moban/static/js/popper.min.js")" asp-append-version="true" />
+	</script>
+	<!-- Owl Carousel JS CDN -->
+	<script src="@Url.Content("~/vendor/moban/static/js/owl.carousel.min.js")" asp-append-version="true" />
+	</script>
+	<!-- CounterUp JS CDN -->
+	<script src="@Url.Content("~/vendor/moban/static/js/jquery.counterup.min.js")" asp-append-version="true" />
+	</script>
+	<!-- WayPoints JS CDN -->
+	<script src="@Url.Content("~/vendor/moban/static/js/waypoints.min.js")" asp-append-version="true" />
+	</script>
+	<!-- WOW JS CDN -->
+	<script src="@Url.Content("~/vendor/moban/static/js/wow.js")" asp-append-version="true" />
+	</script>
+	<!-- Imageloaded JS CDN -->
+	<script src="@Url.Content("~/vendor/moban/static/js/imagesloaded.pkgd.min.js")" asp-append-version="true" />
+	</script>
+	<!-- Venubox JS CDN -->
+	<script src="@Url.Content("~/vendor/moban/static/js/venobox.js")" asp-append-version="true" />
+	</script>
+	<!-- Animated JS CDN -->
+	<script src="@Url.Content("~/vendor/moban/static/js/animated-text.js")" asp-append-version="true" />
+	</script>
+	<!-- VenuBox JS CDN -->
+	<script src="@Url.Content("~/vendor/moban/static/js/venobox.min.js")" asp-append-version="true" />
+	</script>
+	<!-- PKG JS CDN -->
+	<script src="@Url.Content("~/vendor/moban/static/js/isotope.pkgd.min.js")" asp-append-version="true" />
+	</script>
+	<!-- MeanMenu JS CDN -->
+	<script src="@Url.Content("~/vendor/moban/static/js/jquery.meanmenu.js")" asp-append-version="true" />
+	</script>
+	<!-- ScrollUp JS CDN -->
+	<script src="@Url.Content("~/vendor/moban/static/js/jquery.scrollUp.js")" asp-append-version="true" />
+	</script>
+	<!-- Burfiller JS CDN -->
+	<script src="@Url.Content("~/vendor/moban/static/js/jquery.barfiller.js")" asp-append-version="true" />
+	</script>
+	<!-- Custom JS CDN -->
+	<script src="@Url.Content("~/vendor/moban/static/js/custom.js")" asp-append-version="true" />
+	</script>
+	</script>
+	<!-- Custom JS -->
+	<script src="@Url.Content("~/js/site.js")" asp-append-version="true" />
+	</script>
+	<!-- 由rewear資料夾引入 -->
+	<script src="@Url.Content("~/vendor/rewear/js/jquery-nivoslider/jquery.nivo.slider.pack.min.js")"
+		asp-append-version="true"></script>
+	<script src="@Url.Content("~/vendor/rewear/js/jquery.countdown/jquery.countdown.min.js")"
+		asp-append-version="true"></script>
+	<script src="@Url.Content("~/vendor/rewear/js/slider/nivo-active.js")" asp-append-version="true"></script>
+	<script src="@Url.Content("~/vendor/rewear/js/plugins.js")" asp-append-version="true"></script>
+	<script src="@Url.Content("~/vendor/rewear/js/tooltip.js")" asp-append-version="true"></script>
+
+	<!-- 依需要引用不同 Javascript -->
+	@await RenderSectionAsync("BodyScript", required: false)
+
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+@model FreshBox.Models.Promotions
+@{
+    ViewData["Title"] = "CreateEdit";
+    Layout = "_LayoutAdmin";
+}
+
+@using (Html.BeginForm())
+{
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @Html.HiddenFor(model => model.Id)
+    <div class="row my-4">
+        <div class="col-md-6">
+            <div class="row form-group align-items-center">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.ProdNo)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.ProdNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProdNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row form-group align-items-center">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.ProdName)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.ProdName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProdName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-4">
+        <div class="col-md-6">
+            <div class="row form-group align-items-center">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.SortNo)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.SortNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SortNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row form-group align-items-center">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.SalePrice)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.SalePrice, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SalePrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-4">
+        <div class="col-md-6">
+            <div class="row form-group align-items-center">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.StartTime)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.StartTime, new
+                        {
+                            htmlAttributes = new
+                            {
+                                @class = "form-control datepicker"
+                             ,
+                                type = "Text"
+                            }
+                        })
+                    @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row form-group align-items-center">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.EndTime)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.EndTime, new
+                        {
+                            htmlAttributes = new
+                            {
+                                @class = "form-control datepicker"
+                             ,
+                                type = "Text"
+                            }
+                        })
+                    @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-12">
+            @Html.InputButton(enFormInputButton.Submit)
+            @Html.ActionReturnButton()
+        </div>
+    </div>
+}

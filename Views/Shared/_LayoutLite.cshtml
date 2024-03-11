@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - 後台管理系統</title>
+    <link rel="stylesheet" href="@Url.Content("~/lib/jqueryui/themes/base/jquery-ui.min.css")"
+        asp-append-version="true" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/bootstrap/css/bootstrap.min.css")" asp-append-version="true" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/bootstrap-icons/font/bootstrap-icons.min.css")"
+        asp-append-version="true" />
+    <link rel="stylesheet" href="@Url.Content("~/vendor/datepicker/datepicker.css")" asp-append-version="true" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/font-awesome/css/all.css")" asp-append-version="true" />
+    <link rel="stylesheet" href="@Url.Content("~/vendor/FullCalendar/5.11.0/dist/main.min.css")"
+        asp-append-version="true" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/bootstrap-select/css/bootstrap-select.min.css")"
+        asp-append-version="true" />
+    <link rel="stylesheet" href="@Url.Content("~/css/site.css")" asp-append-version="true" />
+
+    <!-- 依需要引用不同css檔 -->
+    @await RenderSectionAsync("Styles", required: false)
+
+    <script src="@Url.Content("~/lib/jquery/jquery.min.js")" asp-append-version="true"></script>
+    <script src="@Url.Content("~/lib/jqueryui/jquery-ui.min.js")" asp-append-version="true"></script>
+    <script src="@Url.Content("~/lib/bootstrap/js/bootstrap.bundle.min.js")" asp-append-version="true"></script>
+    <script src="@Url.Content("~/lib/bootstrap-select/js/bootstrap-select.min.js")" asp-append-version="true"></script>
+    <script src="@Url.Content("~/lib/bootstrap-select/js/i18n/defaults-zh_TW.min.js")"
+        asp-append-version="true"></script>
+    <script src="@Url.Content("~/lib/font-awesome/js/all.js")" asp-append-version="true"></script>
+    <script src="@Url.Content("~/vendor/FullCalendar/5.11.0/dist/main.min.js")" asp-append-version="true"></script>
+    <script src="@Url.Content("~/vendor/FullCalendar/5.11.0/dist/locales-all.min.js")"
+        asp-append-version="true"></script>
+    <script src="@Url.Content("~/vendor/FullCalendar/5.11.0/examples/js/theme-chooser.js")"
+        asp-append-version="true"></script>
+    <script src="@Url.Content("~/lib/moment.js/moment.min.js")" asp-append-version="true"></script>
+    <script src="@Url.Content("~/lib/moment.js/locale/zh-tw.min.js")" asp-append-version="true"></script>
+    <script src="@Url.Content("~/lib/sweetalert/sweetalert.min.js")" asp-append-version="true"></script>
+    <script src="@Url.Content("~/vendor/datepicker/datepicker.js")" asp-append-version="true"></script>
+    <script src="@Url.Content("~/vendor/datepicker/datepicker-zh-TW.js")" asp-append-version="true"></script>
+    <script src="@Url.Content("~/js/site.js")" asp-append-version="true"></script>
+
+    <!-- 依需要引用不同JS檔案 -->
+    @await RenderSectionAsync("HeadScript", required: false)
+</head>
+
+<body>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- 依需要引用不同 Javascript -->
+    @await RenderSectionAsync("BodyScript", required: false)
+
+</body>
+
+</html>

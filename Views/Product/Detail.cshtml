@@ -1,0 +1,548 @@
+@model FreshBox.Models.Products
+
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "_Layout";
+    string str_id = "";
+    string str_active = "";
+    int int_index = 0;
+    List<string> ImageList = new List<string>();
+    List<ProductPropertys> PropertyList = new List<ProductPropertys>();
+
+    using var shop = new ShopService();
+    using var prodProp = new z_repoProductPropertys();
+    PropertyList = prodProp.GetProductSpecList(Model.ProdNo);
+    ImageList = shop.GetProductImageList(Model.ProdNo);
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@Url.Content("~/vendor/rewear/css/shortcode/default.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/vendor/rewear/css/product-details.css")" asp-append-version="true" />
+}
+<main class="wrapper sigle-product" id="container" style="margin-top:20px;">
+    <!-- ======= Breadcrumb ======= -->
+    <section class="p-3">
+        <ul class="nav nav-pills text-dark">
+            <li><a class="text-success px-1" href="@Url.Action("Index" , "Home" , new {area=""})">首頁</a></li>
+            <li><span class="text-success px-1">/</span></li>
+            <li><a class="text-success px-1" href="@Url.Action("Index" , "Category" , new {area=""})">全站商品</a></li>
+            <li><span class="text-success px-1">/</span></li>
+            <li><a class="text-success px-1"
+                    href="@Url.Action("Index" , "Category" , new {area="", id = ViewData["idData"] })">@ViewData["idName"]</a>
+            </li>
+            <li><span class="text-success px-1">/</span></li>
+            <p>@ActionService.id</p>
+        </ul>
+    </section><!-- End Breadcrumb-->
+    <section id="product_details">
+        <!--single-protfolio-area are start-->
+        <div class="single-protfolio-area">
+            <div class="row probox" style="margin:0 auto;">
+                <!-- 左上方圖片區 -->
+                <div class="col-lg-7 col-sm-12 pb-3">
+                    <div class="portfolio-thumbnil-area">
+                        <div class="product-more-views">
+                            <div class="tab_thumbnail" data-tabs="tabs">
+                                <div class="thumbnail-carousel">
+                                    <ul class="nav">
+                                        @{
+                                            int_index = 0;
+                                            foreach (var item in ImageList)
+                                            {
+                                                int_index++;
+                                                str_id = $"view{int_index}";
+                                                str_active = (int_index == 1) ? "active" : "";
+
+                                                <li>
+                                                    <a href="#@str_id" class="shadow-box @str_active" aria-controls="@str_id"
+                                                        data-bs-toggle="tab">
+                                                        <img src="@Url.Content(item)?v=@DateTime.UtcNow.Ticks" alt="" />
+                                                    </a>
+                                                </li>
+                                            }
+                                        }
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content active-portfolio-area pos-rltv">
+                            @{
+                                int_index = 0;
+                                foreach (var item in ImageList)
+                                {
+                                    int_index++;
+                                    str_id = $"view{int_index}";
+                                    str_active = (int_index == 1) ? "active" : "";
+
+                                    <div role="tabpanel" class="tab-pane @str_active" id="@str_id">
+                                        <div class="product-img">
+                                            <a class="fancybox" data-fancybox-group="group" href="@Url.Content(item)">
+                                                <img src="@Url.Content(item)?v=@DateTime.UtcNow.Ticks" alt="Single portfolio" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!-- 右上方文字區 -->
+                <div class="col-lg-5 col-sm-12">
+                    <div class="single-product-description">
+                        <div class="sp-top-des">
+                            <h3>@Model.ProdName</h3>
+                            <div class="prodcut-ratting-price">
+                                <div class="prodcut-price">
+                                    @if (Model.DiscountPrice != 0)
+                                    {
+                                        <div class="new-price"> $@Model.DiscountPrice </div>
+                                        <div class="old-price"> <del>$@Model.SalePrice</del> </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="new-price"> $@Model.SalePrice </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sp-des">
+                            <p>@Model.SpecificationText</p>
+                        </div>
+                        <div class="bt">
+                            <div class="sp-bottom-des">
+                                @foreach (var item in PropertyList)
+                                {
+                                    <label class="font-bold">@item.PropertyName：@item.PropertyValue</label>
+                                    <br>
+                                }
+
+                                <label>
+                                    <span class="font-bold">商品狀況</span>：@Model.StatusName &ensp;
+                                    <button class="dd" data-bs-toggle="tooltip" data-bs-html="true"
+                    title="<div class='ss'>★ <b>現貨</b>：存貨充足<br><br> ★ <b>已售完</b>：暫無存貨<br><br> ★ <b>預售</b>：尚未到貨，僅提供提前預訂<br><br> ★ <b>停產</b>：已停止生產<br><br> ★ <b>待補貨</b>：目前缺貨，已向廠商訂購<br><br> ★ <b>新品</b>：最新推出<br><br> ★ <b>限量</b>：數量有限，售完為止<br><br> ★ <b>清倉</b>：清除庫存<br><br></div>">
+                                        <i class="fa-sharp fa-solid fa-circle-question color-lightgrey"></i>
+                                    </button>
+
+                                </label>
+                            </div>
+                            @using (Html.BeginForm("AddCarts", "Cart", new { area = "" }, FormMethod.Post, null, new
+                            { @class = "form" }))
+                            {
+                                <input type="hidden" id="ProdNo" name="ProdNo" value="@Model.ProdNo">
+                                <div class="quantity-area">
+                                    <label class="font-bold">數量：</label>
+                                    <div class="cart-quantity">
+                                        <div class="product-qty">
+                                            <div class="cart-quantity">
+                                                <div class="cart-plus-minus">
+                                                    <div class="dec qtybutton">-</div>
+                                                    <input type="text" value="1" id="qtybutton" name="qtybutton"
+                                                        class="cart-plus-minus-box">
+                                                    <div class="inc qtybutton">+</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ms-2">
+                                    <div class="float-start ms-4 me-2">
+                                        <input type="submit" value="加入購物車" class="btn btn-success">
+                                    </div>
+                                    <div class="float-start">
+                                        <input type="submit" value="立即結帳" class="btn btn-primary" id="submit" name="submit">
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!--single-protfolio-area are start-->
+
+        <!--descripton-area start -->
+        <div class="descripton-area">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product-area tab-cars-style">
+                            <div class="title-tab-product-category row">
+                                <div class="col-lg-12 text-center">
+                                    <ul class="nav my-5 heading-style-2" role="tablist">
+                                        <li role="presentation"><a class="active" href="#newarrival"
+                                                aria-controls="newarrival" role="tab" data-bs-toggle="tab">商品描述
+                                                Description</a></li>
+                                        <li role="presentation"><a href="#specialoffer" aria-controls="specialoffer"
+                                                role="tab" data-bs-toggle="tab">相關標籤 Tags</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12">
+                                <div class="content-tab-product-category">
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade show fix active" id="newarrival">
+                                            <div class="despro">
+                                                <div class="review-wraper">
+                                                    <h4>商品分類</h4>
+                                                    <p>所有商品 > @ViewData["idName"]</p>
+                                                    <br>
+                                                    <h4>商品規格</h4>
+                                                    <ul>
+                                                        <li>衣長：60公分</li>
+                                                        <li>肩寬：40公分</li>
+                                                        <li>胸寬：50公分</li>
+                                                        <li>下擺寬：55公分</li>
+                                                    </ul>
+                                                    <br>
+                                                    <h4>商品描述</h4>
+                                                    @Html.Raw(Model.ContentText)
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div role="tabpanel" class="tab-pane fade in fix" id="specialoffer">
+                                            <ul class="tag-filter d-flex flex-wrap justify-content-center">
+                                                <li><a href="#">時尚</a></li>
+                                                <li><a href="#">男裝</a></li>
+                                                <li><a href="#">春季</a></li>
+                                                <li><a href="#">街頭風</a></li>
+                                                <li><a href="#">風格</a></li>
+                                                <li><a href="#">T-Shirt</a></li>
+                                                <li><a href="#">健康</a></li>
+                                                <li><a href="#">新上市</a></li>
+                                                <li><a href="#">美味</a></li>
+                                                <li><a href="#">潮流</a></li>
+                                                <li><a href="#">休閒</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--descripton-area end-->
+
+        <!--new arrival area start-->
+        <div class="new-arrival-area">
+            <div class="container relpro py-5">
+                <div class="row">
+                  <div class="col-lg-12 text-center">
+                    <div class="heading-title heading-style pos-rltv mb-50 text-center">
+                      <h5 class="uppercase pb-4">相關商品</h5>
+                    </div>
+                    <div class="total-new-arrival new-arrival-slider-active carsoule-btn">
+                      <div class="product-item">
+                        <!-- single product start-->
+                        <div class="single-product">
+                          <div class="product-img">
+                            <div class="product-label">
+                              <div class="new">New</div>
+                            </div>
+                            <div class="single-prodcut-img  product-overlay pos-rltv">
+                              <a href="single-product.html">
+                                <img alt="" src="@Url.Content("~/images/product/M002/M002.jpg")" class="primary-image">
+                                <img alt="" src="@Url.Content("~/images/product/M002/M002.jpg")" class="secondary-image">
+                              </a>
+                            </div>
+                            <div class="product-icon socile-icon-tooltip text-center">
+                              <ul>
+                                <li>
+                                  <a href="./shopping_cart.html" data-tooltip="加入購物車" class="add-cart" data-placement="left"><i
+                                      class="fa fa-cart-plus"></i></a>
+                                </li>
+                                <li>
+                                  <a href="#" data-tooltip="快速檢視" class="q-view" data-bs-toggle="modal"
+                                    data-bs-target=".modal"><i class="fa fa-eye"></i></a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="product-text">
+                            <div class="prodcut-name">
+                              <a href="single-product.html">男裝 AIRISM棉質寬版T恤(無袖)</a>
+                            </div>
+                            <div class="prodcut-ratting-price">
+                              <div class="prodcut-price">
+                                <div class="new-price"> $150 </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- single product end-->
+                      </div>
+                      <div class="product-item">
+                        <!-- single product start-->
+                        <div class="single-product">
+                          <div class="product-img">
+                            <div class="single-prodcut-img  product-overlay pos-rltv">
+                              <a href="single-product.html"><img alt="" src="@Url.Content("~/images/product/M001/M001.jpg")"
+                                  class="primary-image"><img alt="" src="@Url.Content("~/images/product/M001/M001.jpg")"
+                                  class="secondary-image"></a>
+                            </div>
+                            <div class="product-icon socile-icon-tooltip text-center">
+                              <ul>
+                                <li>
+                                  <a href="./shopping_cart.html" data-tooltip="加入購物車" class="add-cart" data-placement="left"><i
+                                      class="fa fa-cart-plus"></i></a>
+                                </li>
+                                <li>
+                                  <a href="#" data-tooltip="快速檢視" class="q-view" data-bs-toggle="modal"
+                                    data-bs-target=".modal"><i class="fa fa-eye"></i></a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="product-text">
+                            <div class="prodcut-name"> <a href="single-product.html">男裝 AIRISM棉質寬版圓領T恤(五分袖)</a>
+                            </div>
+                            <div class="prodcut-ratting-price">
+                              <div class="prodcut-price">
+                                <div class="new-price"> $150 </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- single product end-->
+                      </div>
+                      <div class="product-item">
+                        <!-- single product start-->
+                        <div class="single-product">
+                          <div class="product-img">
+                            <div class="product-label">
+                              <div class="new">Sale</div>
+                            </div>
+                            <div class="single-prodcut-img  product-overlay pos-rltv">
+                              <a href="single-product.html"> <img alt="" src="@Url.Content("~/images/product/M003/M003.jpg")"
+                                  class="primary-image"> <img alt="" src="@Url.Content("~/images/product/M003/M003.jpg")"
+                                  class="secondary-image">
+                              </a>
+                            </div>
+                            <div class="product-icon socile-icon-tooltip text-center">
+                              <ul>
+                                <li>
+                                  <a href="./shopping_cart.html" data-tooltip="加入購物車" class="add-cart" data-placement="left"><i
+                                      class="fa fa-cart-plus"></i></a>
+                                </li>
+                                <li>
+                                  <a href="#" data-tooltip="快速檢視" class="q-view" data-bs-toggle="modal"
+                                    data-bs-target=".modal"><i class="fa fa-eye"></i></a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="product-text">
+                            <div class="prodcut-name"> <a href="single-product.html">男裝 寬版降落傘工裝長褲</a>
+                            </div>
+                            <div class="prodcut-ratting-price">
+                              <div class="prodcut-price">
+                                <div class="new-price"> $390 </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- single product end-->
+                      </div>
+                      <div class="product-item">
+                        <!-- single product start-->
+                        <div class="single-product">
+                          <div class="product-img">
+                            <div class="single-prodcut-img  product-overlay pos-rltv">
+                              <a href="single-product.html"> <img alt="" src="@Url.Content("~/images/product/M005/M005.jpg")"
+                                  class="primary-image"> <img alt="" src="@Url.Content("~/images/product/M005/M005.jpg")"
+                                  class="secondary-image">
+                              </a>
+                            </div>
+                            <div class="product-icon socile-icon-tooltip text-center">
+                              <ul>
+                                <li><a href="./shopping_cart.html" data-tooltip="加入購物車" class="add-cart"
+                                    data-placement="left"><i class="fa fa-cart-plus"></i></a>
+                                </li>
+                                <li><a href="#" data-tooltip="快速檢視" class="q-view" data-bs-toggle="modal"
+                                    data-bs-target=".modal"><i class="fa fa-eye"></i></a></li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="product-text">
+                            <div class="prodcut-name"> <a href="single-product.html">男裝 錐形打褶休閒長褲</a>
+                            </div>
+                            <div class="prodcut-ratting-price">
+                              <div class="prodcut-price">
+                                <div class="new-price"> $490 </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- single product end-->
+                      </div>
+                      <div class="product-item">
+                        <!-- single product start-->
+                        <div class="single-product">
+                          <div class="product-img">
+                            <div class="single-prodcut-img  product-overlay pos-rltv">
+                              <a href="single-product.html"> <img alt="" src="@Url.Content("~/images/product/M004/M004.jpg")"
+                                  class="primary-image"> <img alt="" src="@Url.Content("~/images/product/M004/M004.jpg")"
+                                  class="secondary-image">
+                              </a>
+                            </div>
+                            <div class="product-icon socile-icon-tooltip text-center">
+                              <ul>
+                                <li>
+                                  <a href="./shopping_cart.html" data-tooltip="加入購物車" class="add-cart" data-placement="left"><i
+                                      class="fa fa-cart-plus"></i></a>
+                                </li>
+                                <li>
+                                  <a href="#" data-tooltip="快速檢視" class="q-view" data-bs-toggle="modal"
+                                    data-bs-target=".modal"><i class="fa fa-eye"></i></a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="product-text">
+                            <div class="prodcut-name"> <a href="single-product.html">男裝 寬版降落傘工裝長褲</a>
+                            </div>
+                            <div class="prodcut-ratting-price">
+                              <div class="prodcut-price">
+                                <div class="new-price"> $390 </div>
+                                <div class="old-price"> <del>$338</del> </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- single product end-->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+      </div>
+        </div>
+        <!--new arrival area end-->
+        <!-- QUICKVIEW PRODUCT -->
+        <div id="quickview-wrapper">
+            <!-- Modal -->
+            <div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="modal-product">
+                                <div class="product-images">
+                                    <!--modal tab start-->
+                                    <div class="portfolio-thumbnil-area-2">
+                                        <div class="tab-content active-portfolio-area-2">
+                                            <div role="tabpanel" class="tab-pane active" id="view1">
+                                                <div class="product-img">
+                                                    <a href="#"><img
+                                                            src="@Url.Content("~/images/product/M001/M001.jpg")"
+                                                            alt="Single portfolio" /></a>
+                                                </div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane" id="view2">
+                                                <div class="product-img">
+                                                    <a href="#"><img
+                                                            src="@Url.Content("~/images/product/M002/M002.jpg")"
+                                                            alt="Single portfolio" /></a>
+                                                </div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane" id="view3">
+                                                <div class="product-img">
+                                                    <a href="#"><img
+                                                            src="@Url.Content("~/images/product/M003/M003.jpg")"
+                                                            alt="Single portfolio" /></a>
+                                                </div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane" id="view4">
+                                                <div class="product-img">
+                                                    <a href="#"><img
+                                                            src="@Url.Content("~/images/product/M004/M004.jpg")"
+                                                            alt="Single portfolio" /></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-more-views-2">
+                                            <div class="thumbnail-carousel-modal-2 nav" data-tabs="tabs">
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link active" id="view1" data-bs-toggle="tab"
+                                                        href="#view1" role="tab" aria-controls="view1"
+                                                        aria-selected="true">
+                                                        <img src="@Url.Content("~/images/product/M001/M001.jpg")"
+                                                            alt="" />
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="view2" data-bs-toggle="tab" href="#view2"
+                                                        role="tab" aria-controls="view2" aria-selected="true">
+                                                        <img src="@Url.Content("~/images/product/M002/M002.jpg")"
+                                                            alt="" />
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="view3" data-bs-toggle="tab" href="#view3"
+                                                        role="tab" aria-controls="view3" aria-selected="true">
+                                                        <img src="@Url.Content("~/images/product/M003/M003.jpg")"
+                                                            alt="" />
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="view4" data-bs-toggle="tab" href="#view4"
+                                                        role="tab" aria-controls="view4" aria-selected="true">
+                                                        <img src="@Url.Content("~/images/product/M004/M004.jpg")"
+                                                            alt="" />
+                                                    </a>
+                                                </li>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--modal tab end-->
+                                <!-- .product-images -->
+                                <div class="product-info">
+                                    <h1>產品名稱</h1>
+                                    <div class="price-box-3">
+                                        <div class="s-price-box"> <span class="new-price">$160.00</span> <span
+                                                class="old-price">$190.00</span> </div>
+                                    </div>
+                                    <!-- <a href="shop.html" class="see-all">See all features</a> -->
+                                    <div class="quick-add-to-cart">
+                                        <form method="post" class="cart">
+                                            <div class="numbers-row">
+                                                <input type="number" id="french-hens" value="3" min="1">
+                                            </div>
+                                            <button class="single_add_to_cart_button" type="submit">加入購物車</button>
+                                        </form>
+                                    </div>
+                                    <div class="quick-desc"> Lorem ipsum dolor sit amet, consectetur adipiscing
+                                        elit. Nam fringilla augue nec est tristique auctor. Donec non est at
+                                        libero.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
+                                        fringilla augue nec est tristique auctor. Donec non est at libero.Nam
+                                        fringilla tristique auctor. </div>
+                                </div>
+                                <!-- .product-info -->
+                            </div>
+                            <!-- .modal-product -->
+                        </div>
+                        <!-- .modal-body -->
+                    </div>
+                    <!-- .modal-content -->
+                </div>
+                <!-- .modal-dialog -->
+            </div>
+            <!-- END Modal -->
+        </div>
+        <!-- END QUICKVIEW PRODUCT -->
+    </section>
+</main>
+
+@section BodyScript
+{
+    <script src="@Url.Content("~/vendor/rewear/js/main.js")"></script>
+}

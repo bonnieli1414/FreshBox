@@ -1,0 +1,100 @@
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@model IEnumerable<FreshBox.Models.Orders>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_LayoutAdmin";
+}
+<style>
+    table tr>td>.btn {
+        margin-top: 4px;
+        margin-bottom: 4px;
+    }
+</style>
+<table class="table table-bordered" style="width: 100%;">
+    <thead class="table-secondary">
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.IsClosed)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.IsValid)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.SheetNo)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.SheetDate)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.StatusName)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.CustName)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.PaymentName)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.ShippingName)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.ReceiverName)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.TotalAmount)
+            </th>
+            <th>
+                @Html.DisplayNameSortFor(model => model.Remark)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            ActionService.RowId = item.Id;
+            ActionService.RowData = (item.StatusName == null) ? "" : item.SheetNo + " " + item.StatusName;
+            <tr>
+                <td>
+                    @Html.ActionLinkButton(enFormLinkButton.CreateEdit, item.Id)
+                    @Html.InputButton(enFormInputButton.DeleteAlert)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsClosed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsValid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SheetNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SheetDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatusName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShippingName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReceiverName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remark)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

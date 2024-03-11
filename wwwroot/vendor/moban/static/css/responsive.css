@@ -1,0 +1,1330 @@
+/* Normal desktop :1200px. */
+@media (min-width: 1200px) and (max-width: 1600px) {
+
+    .slider-shape {
+        left: 0%;
+    }
+
+    .slider-shape1 {
+        left: 0%;
+    }
+
+    .slider-shape2 {
+        left: -1.5rem;
+    }
+
+    .slider-off {
+        right: 18px;
+    }
+
+    .owl-prev{
+        left: 0;
+    }
+
+    .owl-next{
+        right: 0%;
+    }
+
+    .feature-box-title h1 {
+        width: 100%;
+        font-size: 25px;
+        line-height: 30px;
+    }
+
+    .organic-section-title h1 {
+        width: 100%;
+    }
+
+    .feature-box-thumb img {
+        width: 100%;
+    }
+
+    .about-desc {
+        margin: 17px 0 28px;
+        width: 100%;
+    }
+
+    .feature-desc p {
+        width: 90%;
+    }
+
+
+    /* Homepage Two */
+
+    
+    .team-box-thumb:before {
+        left: 11px;
+    }
+
+    .team-box-thumb:after {
+        right: 19px;
+    }
+
+    .faq-thumb-content {
+        left: 55%;
+    }
+
+
+    /* About Inner Page */
+
+    .about-inner-service-box:hover .about-service-box-content {
+        bottom: 10%;
+    }
+
+    /* Team Details Inner Page */
+
+    .team-shape {
+        left: -10%;
+    }
+
+
+    /* Service Inner Page */
+
+    
+    .service-inner-box-desc p {
+        width: 86%;
+    }
+
+
+
+    
+
+
+}
+
+
+/* Normal desktop :992px. */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+    
+    /*hero section
+    ===================*/
+
+    .slider-title h1 {
+        font-size: 54px;
+        line-height: 60px;
+    }
+
+    .slider-thumb img {
+        width: 100%;
+    }
+
+    .slider-off h5 {
+        font-size: 30px;
+    }
+
+    .slider-shape {
+        left: 0%;
+    }
+
+    .slider-shape1 {
+        left: 0%;
+    }
+
+    .slider-shape2 {
+        left: -1.5rem;
+    }
+
+    .owl-prev{
+        left: 0;
+    }
+
+    .owl-next{
+        right: 0%;
+    }
+
+    .slider-off {
+        top: 2.5rem;
+        right: 2.5rem;
+    }
+
+    .feature-single-box {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .feature-box-title h1 {
+        width: 100%;
+    }
+
+    section.feature-section {
+        padding: 30px 0;
+    }
+
+    .organic-section-title h1 {
+        font-size: 38px;
+        width: 100%;
+    }
+
+    .about-item-title h4 {
+        width: 100%;
+    }
+
+    section.category-section {
+        padding: 0 0 100px;
+    }
+
+    .new-food-thumb img {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .new-food-box {
+        margin-top: 38px;
+    }
+
+    .relation-profile-designation h6 {
+        font-size: 14px;
+    }
+
+    .latest-box-title a {
+        font-size: 18px;
+        width: 100%;
+    }
+
+    .footer-bottomo-social ul li {
+        margin: 0;
+    }
+
+    /*style two*/
+
+
+    .healthy-shop-thumb img {
+        margin-left: -1rem;
+        width: 100%;
+    }
+
+    .new-shop-box-thumb img {
+        width: 100%;
+    }
+
+    .new-shop-single-box.style-2 .new-shop-box-thumb {
+        text-align: center;
+    }
+
+    .new-shop-single-box.style-2 .new-shop-box-thumb img {
+        width: 84%;
+    }
+
+    .new-shop-box-title h5 {
+        font-size: 18px;
+    }
+
+    .faq-thumb img {
+        margin-left: 2rem;
+        width: 100%;
+        margin-top: 2rem;
+    }
+
+    .team-box-thumb img {
+        width: 100%;
+    }
+
+    .team-box-thumb::before {
+        left: 1px;
+        width: 295px;
+        height: 293px;
+    }
+
+    .team-box-thumb::after {
+        bottom: 0;
+        right: 8px;
+        width: 279px;
+        height: 277px;
+    }
+
+    .latest-box-date h6, .latest-box-message h6 {
+        margin: 6px 20px 0px 0;
+    }
+
+
+    /* About Inner Page */
+
+    .about-inner-service-box:hover .about-service-box-content {
+        bottom: 5%;
+    }
+
+    .about-service-box-sub-title h6 {
+        margin: 6px 0 0;
+    }
+
+
+    /* Team Details Inner Page */
+
+    .team-details-thumb img {
+        width: 100%;
+    }
+
+    .team-shape {
+        display: none;
+    }
+
+    /* Eror Inner Section */
+
+    .eror-thumb img {
+        width: 100%;
+    }
+
+    
+
+    /*Feature section
+    =========================*/
+
+    
+
+    /*Start Section title
+    =========================*/
+
+    
+
+    /*Start About Section
+    =========================*/
+
+
+    
+
+    /*Service Section
+    ========================*/
+
+    
+
+
+
+    /* Team  Section
+    =================*/
+
+    
+
+
+    /*Testi Section
+    =====================*/
+
+    
+
+    /*start call to action 
+    =======================*/
+
+    
+
+    /*Footer Section
+    =====================*/
+
+
+    
+
+    /*inner page Counter
+    ====================*/
+
+    
+
+    /*progess
+    ===========*/
+
+    
+
+    /*Service Detials
+    =====================*/
+
+    
+
+    
+
+    
+
+    /*Pricing
+    ==================*/
+
+
+    /*Project
+    =================*/
+
+    
+
+    /*Shop Sectio
+    ====================*/
+
+    
+
+    /*Blog Section
+    =====================*/
+
+    
+
+}
+
+
+/* Tablet desktop :768px. */
+@media (min-width: 768px) and (max-width: 991px) {
+
+    section.header-menu-section {
+        display: none;
+    }
+
+    #sticky-header {
+        display: none;
+    }
+
+    
+   /*hero section
+    ===================*/
+
+    section.slider-section {
+       min-height: 77rem;
+    }
+
+    .slider-title h1 {
+        font-size: 56px;
+        width: 80%;
+    }
+
+    .slider-shape {
+        right: 3%;
+        left: inherit;
+    }
+
+    .slider-shape2 {
+        top: 5.5rem;
+        left: inherit;
+        right: 22px;
+    }
+
+    .owl-prev {
+        left: 10px;
+    }
+    
+    .owl-next {
+        right: 10px;
+    }
+
+    .slider-off {
+        top: 4.5rem;
+        right: 10.5rem;
+    }
+
+    .feature-single-box {
+        margin-bottom: 30px;
+    }
+
+    .feature-box-thumb img {
+        width: 100%;
+    }
+
+
+    .feature-box-title h1 {
+        font-size: 22px;
+        margin: 5px 0 22px;
+        width: 100%;
+    }
+
+    section.about-section {
+        padding: 0 0 100px;
+    }
+
+    .about-thumb-btn {
+        right: 7rem;
+    }
+
+    .category-single-box {
+        margin-bottom: 30px;
+    }
+
+    .fresh-food-single-box {
+        margin-bottom: 30px;
+    }
+
+    .new-food-thumb {
+        text-align: center;
+    }
+
+    .new-food-thumb img {
+        margin: auto;
+    }
+
+    section.new-food-section .organic-section-title h1 {
+        width: 80%;
+    }
+
+    section.relation-section .organic-section-title h1 {
+        width: 70%;
+    }
+
+    section.latest-news-section .organic-section-title h1 {
+        width: 70%;
+    }
+
+
+    /*Homepage Two
+    =========================*/
+
+    
+    .propose-single-box {
+        margin-bottom: 30px;
+    }
+
+    .healthy-shop-thumb img {
+        margin-left: 0;
+        margin-bottom: 3rem;
+    }
+
+    section.healthy-shop-section .organic-section-title h1 {
+        width: 80%;
+    }
+
+    .healthy-shop-desc p {
+        width: 80%;
+    }
+
+    .new-shop-single-box {
+        margin-bottom: 30px;
+    }
+
+    .team-box-thumb::before {
+        left: 2px;
+    }
+
+    .team-box-thumb::after {
+        right: 8px;
+    }
+
+    .team-single-box {
+        margin-bottom: 30px;
+    }
+
+    section.latest-news-section.style-2 .organic-section-title h1 {
+        width: 60%;
+    }
+
+
+    /* About Inner Page */
+
+    section.about-section.style-two {
+        padding: 100px 0;
+    }
+
+    .about-inner-service-box {
+        margin-bottom: 30px;
+    }
+
+    /* Team Details Inner Page */
+
+    .team-details-thumb img {
+        width: 100%;
+    }
+
+    .team-shape {
+        display: none;
+    }
+
+
+    /* Eror Inner Section */
+
+    .eror-thumb img {
+        width: 100%;
+    }
+
+
+
+    
+
+
+    /* Service  Section
+    =================*/
+
+    
+
+
+    /*Testi Section
+    =====================*/
+
+    
+
+    /*Call to action
+    ================*/
+
+    
+
+    /*Footer Section
+    =====================*/
+
+
+
+    /*Inner Page
+    ==================*/
+
+    
+
+    /*Counter
+    ==============*/
+
+    
+
+    /*progress
+    ==============*/
+
+    
+    /*Service Details
+    =====================*/
+
+    
+
+    /*Call to Action
+    =====================*/
+
+    
+    /*Proejct
+    ================*/
+
+    
+
+    /*Shop Section
+    ====================*/
+
+    
+
+    
+    /*Blog Section
+    =====================*/
+
+    
+
+}
+
+/* Large Mobile :600px. */
+@media only screen and (min-width: 600px) and (max-width: 767px) {
+
+    
+    section.header-menu-section {
+        display: none;
+    }
+
+    #sticky-header {
+        display: none;
+    }
+
+    
+   /*hero section
+    ===================*/
+
+    section.slider-section {
+       min-height: 64rem;
+    }    
+    
+    section.slider-section.style-2 {
+        height: 53rem;
+    }
+
+    .slider-title h1 {
+        font-size: 46px;
+        line-height: 50px;
+    }
+
+    .slider-shape {
+        display: none;
+    }
+
+    .slider-shape2 {
+        display: none;
+    }
+    
+    .slider-shape1 {
+        display: none;
+    }
+
+    .slider-thumb img {
+        width: 100%;
+    }
+
+    .owl-prev {
+        left: 10px;
+        top: 48%;
+    } 
+    
+    .owl-next {
+        right: 10px;
+        top: 48%;
+    }
+
+    .slider-off {
+        top: 60px;
+        right: 40px;
+    }
+
+    .feature-single-box {
+        margin-bottom: 30px;
+    }
+
+    .feature-box-title h1 {
+        width: 100%;
+    }
+
+    section.about-section {
+        padding: 0 0 100px;
+    }
+    
+    section.about-section .organic-section-title h1 {
+        font-size: 40px;
+    }
+
+    .about-desc {
+        width: 100%;
+    }
+
+    .category-single-box {
+        margin-bottom: 30px;
+    }
+
+    .fresh-food-box-thumb img {
+        height: 22rem;
+    }
+
+    .fresh-food-single-box {
+        margin-bottom: 30px;
+    }
+
+    .new-food-thumb img {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    section.new-food-section .organic-section-title h1 {
+        width: 100%;
+        font-size: 40px;
+        line-height: 50px;
+    }
+
+    section.relation-section .organic-section-title h1 {
+        width: 80%;
+        font-size: 36px;
+        line-height: 44px;
+    }
+
+
+   
+
+
+    /*Homepage Two
+    =========================*/
+
+    .propose-desc p {
+        width: 85%;
+    }
+
+    .organic-section-title h1 {
+        font-size: 38px;
+    }
+
+    .propose-single-box {
+        margin-bottom: 30px;
+    }
+
+    .healthy-shop-thumb img {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .new-shop-desc p {
+        width: 90%;
+    }
+
+    .new-shop-single-box {
+        margin-bottom: 30px;
+    }
+
+    .faq-thumb img {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .faq-thumb-content {
+        left: 41%;
+    }
+
+    .team-single-box {
+        margin-bottom: 30px;
+    }
+
+    .team-box-thumb::before {
+        left: 5.78em;
+    }
+
+    .team-box-thumb::after {
+        right: 6.1rem;
+    }
+
+    .testimonial-desc p {
+        width: 89%;
+    }
+
+    .testimonial-tab-btn ul li {
+        margin: 68px 6px 0;
+    }
+
+    section.latest-news-section.style-2 .organic-section-title h1 {
+        width: 60%;
+    }
+
+    /* About Inner Page */
+
+    section.about-section.style-two {
+        padding: 100px 0;
+    }
+
+    .about-inner-service-box {
+        margin-bottom: 30px;
+    }
+
+    .about-inner-service-box:hover .about-service-box-content {
+        bottom: 28%;
+    }
+
+    .about-counter-box {
+        margin-bottom: 30px;
+    }
+
+    /* Team Details Inner Page */
+
+    .team-details-thumb img {
+        width: 100%;
+    }
+
+    .team-shape {
+        display: none;
+    }
+
+    /* Eror Inner Section */
+
+    .eror-thumb img {
+        width: 100%;
+    }
+
+
+    
+
+    /*Service Details
+    =====================*/
+
+    
+
+    /*accordion
+    ================*/
+
+    
+
+    /*Call To Action
+    ====================*/
+
+    
+
+    /*Proejct
+    ================*/
+    
+    
+
+    /*Shop Sectio
+    ====================*/
+
+    
+
+    /*Blog Section
+    =====================*/
+
+    
+
+
+}
+
+/* small mobile :480px. */
+@media only screen and (min-width: 480px) and (max-width: 599px) {
+
+    section.header-menu-section {
+        display: none;
+    }
+
+    #sticky-header {
+        display: none;
+    }
+
+    /*hero section
+    ===================*/
+
+    section.slider-section {
+        min-height: 64rem;
+    }
+
+    .slider-shape2 {
+        display: none;
+    }    
+    
+    .slider-shape1 {
+        display: none;
+    }    
+    
+    .slider-shape {
+        display: none;
+    }
+
+    .slider-title h1 {
+        font-size: 44px;
+        line-height: 50px;
+    }
+
+    .slider-thumb img {
+        width: 100%;
+    }
+
+    .owl-prev {
+        top: 50%;
+        left: 5px;
+    }
+
+    .owl-next {
+        top: 50%;
+        right: 5px;
+    }
+
+    .slider-off {
+        top: 44px;
+        right: 44px;
+    }
+
+    .feature-single-box {
+        margin-bottom: 30px;
+    }
+
+    .feature-box-thumb img {
+        width: 100%;
+    }
+
+    .feature-box-title h1 {
+        width: 100%;
+    }
+
+    section.about-section {
+        padding:  0 0 100px;
+    }
+
+    section.about-section .organic-section-title h1 {
+        line-height: 48px;
+        font-size: 36px;
+    }
+
+    .about-item-title h4 {
+        width: 100%;
+    }
+
+    .organic-section-title h1 {
+        line-height: 48px;
+        font-size: 36px;
+    }
+
+    .category-single-box {
+        margin-bottom: 30px;
+    }
+
+    .fresh-food-box-thumb img {
+        height: 22rem;
+    }
+
+    .fresh-food-single-box {
+        margin-bottom: 30px;
+    }
+
+    .new-food-thumb img {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    section.new-food-section .organic-section-title h1 {
+        width: 90%;
+        font-size: 34px;
+        line-height: 48px;
+    }
+
+    section.relation-section .organic-section-title h1 {
+        width: 80%;
+        font-size: 34px;
+        line-height: 44px;
+    }
+
+    section.brand-section {
+        text-align: center;
+    }
+    
+
+    /*Homepage Two*/
+
+
+    .propose-desc p {
+        width: 100%;
+    }
+    
+    .organic-section-title h1 {
+        line-height: 44px;
+        font-size: 32px;
+    }
+
+    .propose-single-box {
+        margin-bottom: 30px;
+    }
+
+    .healthy-shop-thumb img {
+        margin-left: 0;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .new-shop-desc p {
+        width: 100%;
+    }
+
+    .new-shop-single-box {
+        margin-bottom: 30px;
+    }
+
+    .faq-thumb img {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .faq-thumb-content {
+        top: 42%;
+        left: 39%;
+    }
+
+    .team-box-thumb::before {
+        left: 62px;
+    }
+
+    .team-box-thumb::after {
+        right: 68px;
+    }
+
+    .team-single-box {
+        margin-bottom: 30px;
+    }
+
+    section.latest-news-section.style-2 .organic-section-title h1 {
+        width: 80%;
+    }
+
+    .latest-box-title a {
+        width: 65%;
+    }
+
+
+     /* About Inner Page */
+
+     section.about-section.style-two {
+        padding: 100px 0;
+    }
+
+    .about-inner-service-box {
+        margin-bottom: 30px;
+    }
+
+    .about-inner-service-box:hover .about-service-box-content {
+        bottom: 28%;
+    }
+
+    .about-counter-box {
+        margin-bottom: 30px;
+    }
+
+    /* Team Details Inner Page */
+
+    .team-details-thumb img {
+        width: 100%;
+    }
+
+    .team-shape {
+        display: none;
+    }
+
+    .qoute-form-top {
+        gap: 0;
+        flex-direction: column;
+    }
+
+    .team-details-quote-title h2 {
+        font-size: 26px;
+        line-height: 40px;
+    }
+
+    /* Eror Inner Section */
+
+    .eror-thumb img {
+        width: 100%;
+    }
+
+    
+
+}
+
+/* small mobile :320px. */
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+
+    section.header-menu-section {
+        display: none;
+    }
+
+    #sticky-header {
+        display: none;
+    }
+
+
+    /* Banner Section */
+
+    .slider-shape {
+        display: none;
+    }
+    
+    .slider-shape1 {
+        display: none;
+    }
+    
+    .slider-shape2 {
+        display: none;
+    }
+
+    .owl-nav {
+        display: none;
+    }
+
+    section.slider-section {
+        height: 60rem;
+    }
+
+    .slider-title h1 {
+        font-size: 32px;
+        line-height: 42px;
+        color: #333333;
+        font-weight: 700;
+        font-family: "Playfair Display";
+        margin-top: 15px;
+    }
+
+    .slider-thumb img {
+        width: 100%;
+        margin-top: 40px;
+    }
+
+    .slider-off {
+        top: 17px;
+        right: 24px;
+    }
+
+    .slider-off h5 {
+        font-size: 20px;
+    }
+
+    .slider-off span {
+        font-size: 20px;
+    }
+
+    .slider-off h6 {
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .feature-single-box {
+        flex-direction: column;
+        gap: 30px;
+        margin-bottom: 30px;
+    }
+
+    .feature-box-title h1 {
+        width: 100%;
+    }
+
+    section.about-section {
+        padding: 0 0 100px;
+    }
+
+    .about-thumb-btn {
+        right: 1rem;
+    }
+
+    .about-thumb-btn a {
+        width: 60px;
+        height: 60px;
+        border-radius: 5px;
+        line-height: 60px;
+    }
+
+    .about-thumb img {
+        margin-left: 0;
+    }
+
+    .organic-section-title h1 {
+        font-size: 26px;
+        line-height: 32px;
+        width: 100%;
+    }
+
+    .about-items {
+        align-items: inherit;
+        flex-direction: column;
+    }
+
+    .category-single-box {
+        margin-bottom: 30px;
+    }
+
+    .feature-thumb img {
+        width: 100%;
+    }
+
+    .fresh-food-single-box {
+        margin-bottom: 30px;
+    }
+
+    .new-food-thumb img {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    #clockdiv > div {
+        margin-bottom: 20px;
+    }
+
+    section.relation-section .organic-section-title h1 {
+        width: 93%;
+    }
+
+    .relation-profile-designation h6 {
+        font-size: 13px;
+    }
+
+    section.latest-news-section {
+        padding: 70px 0;
+    }
+
+
+    /* Homepage Two */
+
+    .organic-section-title h1 {
+        font-size: 24px;
+    }
+
+    .propose-desc p {
+        width: 100%;
+    }
+
+    .propose-single-box {
+        margin-bottom: 30px;
+    }
+
+    .healthy-shop-thumb img {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .healthy-shop-items {
+        flex-direction: column;
+    }
+
+    .new-shop-desc p {
+        width: 100%;
+    }
+
+    .new-shop-single-box {
+        margin-bottom: 30px;
+    }
+
+    .faq-thumb img {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .faq-thumb-content {
+        top: 41%;
+        left: 38%;
+    }
+
+    .faq-thumb-content h1 {
+        font-size: 26px;
+        line-height: 30px;
+    }
+
+    .team-box-thumb img {
+        width: 100%;
+    }
+
+    .team-box-thumb::before {
+        left: 1px;
+        width: 295px;
+        height: 295px;
+    }
+
+    .team-box-thumb::after {
+        right: 8px;
+        width: 279px;
+        height: 280px;
+    }
+
+    .team-single-box {
+        margin-bottom: 30px;
+    }
+
+    .testimonial-desc p {
+        width: 100%;
+    }
+
+    section.latest-news-section.style-2 .organic-section-title h1 {
+        width: 70%;
+    }
+
+
+    /* About Inner Page */
+
+    section.about-section.style-two {
+        padding: 100px 0;
+    }
+
+    .about-inner-service-box {
+        margin-bottom: 30px;
+    }
+
+    .about-inner-service-box:hover .about-service-box-content {
+        bottom: 8%;
+    }
+
+    .about-counter-box {
+        margin-bottom: 30px;
+    }
+
+    /* Team Details Inner Page */
+
+    .team-details-thumb img {
+        width: 100%;
+    }
+
+    .team-shape {
+        display: none;
+    }
+
+    .team-details-quote-title h2 {
+        font-size: 24px;
+        line-height: 30px;
+    }
+
+    .qoute-form-top {
+        gap: 0;
+        flex-direction: column;
+    }
+
+    /* Eror Inner Section */
+
+    .eror-thumb img {
+        width: 100%;
+    }
+
+    .eror-title h1 {
+        font-size: 28px;
+        margin: 30px 0 0;
+    }
+
+
+
+}
+

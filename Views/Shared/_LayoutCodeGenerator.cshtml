@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="ASP.NET MVC Core - Bootstrap 5 Responsive Admin">
+    <meta name="author" content="Johnson">
+    <meta name="keyword" content="ASP.NET MVC Core, Dashboard, Admin, Template, Theme, Bootstrap, Responsive">
+    <link rel="icon" type="image/x-icon" href="@Url.Content("~/favicon.ico")">
+
+    <title>ASP.Net Core 程式產生器</title>
+
+    <!--==================================================-->
+    <!-- Start CSS 區域 -->
+    <!--==================================================-->
+    <link rel="stylesheet" href="@Url.Content("~/lib/jqueryui/themes/base/jquery-ui.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/bootstrap/css/bootstrap.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/bootstrap-icons/font/bootstrap-icons.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/toastr.js/toastr.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/vendor/datepicker/datepicker.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/font-awesome/css/all.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/flag-icons/css/flag-icons.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/vendor/BootstrapSelect/bootstrap-select.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/sweetalert2/sweetalert2.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/site.css")" asp-append-version="true" />
+
+    <!--==================================================-->
+    <!-- Start JS 區域 -->
+    <!--==================================================-->
+    <script src="@Url.Content("~/lib/jquery/jquery.min.js")"></script>
+    <script src="@Url.Content("~/lib/jqueryui/jquery-ui.min.js")"></script>
+    <script src="@Url.Content("~/lib/bootstrap/js/bootstrap.bundle.min.js")"></script>
+    <script src="@Url.Content("~/lib/Chart.js/chart.umd.min.js")"></script>
+    <script src="@Url.Content("~/vendor/ckeditor/ckeditor.js")"></script>
+    <script src="@Url.Content("~/vendor/ckeditor/lang/zh.min.js")"></script>
+    <script src="@Url.Content("~/lib/font-awesome/js/all.js")"></script>
+    <script src="@Url.Content("~/lib/moment.js/moment.min.js")"></script>
+    <script src="@Url.Content("~/lib/moment.js/locale/zh-tw.min.js")"></script>
+    <script src="@Url.Content("~/vendor/datepicker/datepicker.js")"></script>
+    <script src="@Url.Content("~/vendor/datepicker/datepicker-zh-TW.js")"></script>
+    <script src="@Url.Content("~/vendor/FullCalendar/6.1.9/dist/index.global.min.js")"></script>
+    <script src="@Url.Content("~/vendor/FullCalendar/6.1.9/packages/core/locales-all.global.min.js")"></script>
+    <script src="@Url.Content("~/vendor/FullCalendar/6.1.9/packages/bootstrap5/index.global.min.js")"></script>
+    <script src="@Url.Content("~/lib/sweetalert2/sweetalert2.min.js")"></script>
+    <script src="@Url.Content("~/vendor/BootstrapSelect/bootstrap-select.min.js")"></script>
+    <script src="@Url.Content("~/lib/toastr.js/toastr.min.js")"></script>
+    <script src="@Url.Content("~/js/site.js")" asp-append-version="true"></script>
+
+    <!-- 依需要引用不同css和js檔案 -->
+    @await RenderSectionAsync("Styles", required: false)
+    @await RenderSectionAsync("HeadScript", required: false)
+</head>
+
+<body>
+
+
+    <div class="container-fluid">
+        <!-- TopMenu -->
+        <div class="row flex-nowrap">
+            <div class="col-12 bg-dark">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
+                    <a class="navbar-brand" href="@Url.Action("Index" , "CodeGenerator" , new {area = "" })">ASP.Net
+                        Core 程式產生器</a>
+                </nav>
+            </div>
+        </div>
+        <div class="row flex-nowrap">
+            <div class="col py-3">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    @await RenderSectionAsync("BodyScript", required: false)
+
+</body>
+
+</html>

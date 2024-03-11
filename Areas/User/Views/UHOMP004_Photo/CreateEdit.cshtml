@@ -1,0 +1,68 @@
+@model FreshBox.Models.Photos
+@{
+    ViewData["Title"] = "CreateEdit";
+    Layout = "_LayoutAdmin";
+}
+
+@using (Html.BeginForm())
+{
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @Html.HiddenFor(model => model.Id)
+    <div class="row py-2">
+        <div class="col-md-6">
+            <div class="row form-group align-items-center ">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.PhotoNo)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.PhotoNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PhotoNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row form-group align-items-center ">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.FolderName)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.FolderName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FolderName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row py-2">
+        <div class="col-md-6">
+            <div class="row form-group align-items-center ">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.ProdName)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.ProdName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProdName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row py-2">
+        <div class="col-md-6">
+            <div class="row form-group align-items-center ">
+                <div class="control-label col-md-3 col-xxl-2">
+                    @Html.DisplayNameFor(model => model.Remark)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Remark, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Remark, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-12">
+            @Html.InputButton(enFormInputButton.Submit)
+            @Html.ActionReturnButton()
+        </div>
+    </div>
+}

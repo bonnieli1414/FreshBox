@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+    string str_area = "";
+    string str_controller = "Home";
+    string str_action = "Index";
+    string str_name = "返回登入頁";
+    if (SessionService.ReturnPage == "WebLogin")
+    {
+        str_controller = "Web";
+        str_name = "返回登入頁";
+    }
+    if (SessionService.ReturnPage == "ShopIndex")
+    {
+        str_controller = "Home";
+        str_name = "繼續購物";
+    }
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@Url.Content("~/vendor/rewear/css/form.css")" />
+}
+
+<div id="mg">
+    <section class="mgbox">
+        <h2>訊息提示</h2>
+        <h5 class="text-danger">
+            @Html.Raw(SessionService.MessageText)
+        </h5>
+        <br />
+        <div class="btnContainer rounded">
+            <a name="login" href="@Url.Action(str_action , str_controller , new {area = str_area})" class="loginBtn">
+                @str_name
+            </a>
+        </div>
+    </section>
+</div>
