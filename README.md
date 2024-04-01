@@ -82,6 +82,17 @@ cd FreshBox
   }
 ```
 
+### 安裝系統工具
+
+```bash
+dotnet tool uninstall --global dotnet-aspnet-codegenerator 
+dotnet tool uninstall --global dotnet-ef
+dotnet tool uninstall -g Microsoft.Web.LibraryManager.Cli
+dotnet tool install --global dotnet-aspnet-codegenerator
+dotnet tool install --global dotnet-ef
+dotnet tool install -g Microsoft.Web.LibraryManager.Cli
+```
+
 ### 安裝套件
 
 ```bash
